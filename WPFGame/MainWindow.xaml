@@ -1,12 +1,308 @@
-﻿<Window x:Class="WPFGame.MainWindow"
+﻿<Window x:Name="GameWindow" x:Class="WPFGame.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Game"
+        Height="540" Width="960"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Background" Value="{StaticResource BackgroundNormal}"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#FF14191E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="191*"/>
+            <RowDefinition Height="54*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Game"/>
+            <Button Grid.Column="1" Content="Save"/>
+            <Button Grid.Column="2" Content="Load"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="This is a Game" TextAlignment="Center" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+            <Button Grid.Column="1" Content="X" FontSize="15" FontWeight="Bold" Width="25" Height="25" Click="Button_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
+            <StackPanel>
+                <TabControl VerticalAlignment="Center" Height="Auto" Margin="0,10">
+                    <TabItem Header="Player">
+                        <Border Padding="5 5">
+                            <StackPanel>
+                                <Label x:Name="UI_PlayerName" Content="Player Name" Margin="0 5" Height="25"/>
+                                <Label x:Name="UI_PlayerLevel" Content="Player Level" Margin="0 5" Height="25"/>
+
+                                <Border BorderBrush="{StaticResource BackgroundNormal}" BorderThickness="2" Padding="5 5" Margin="0 5" Height="Auto">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label x:Name="UI_PlayerWeapon" Content="Weapon Name" Grid.Row="0"  Margin="5 5" Height="25"/>
+                                        <Label x:Name="UI_PlayerArmor" Content="Armor Name" Grid.Row="1" Margin="5 5" Height="25"/>
+
+                                        <Grid Grid.Row="2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label x:Name="UI_PlayerHP" Content="Hp: 000" Grid.Column="0"  Margin="5 5" Height="25"/>
+                                                <Label x:Name="UI_PlayerHpMax" Content="Hp Max: 000" Grid.Column="1"  Margin="5 5" Height="25"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label x:Name="UI_PlayerDmg" Content="Dmg: 00" Grid.Column="0"  Margin="5 5" Height="25"/>
+                                                <Label x:Name="UI_PlayerDef" Content="Def: 00" Grid.Column="1"  Margin="5 5" Height="25"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label x:Name="UI_PlayerStr" Content="Str: 00" Grid.Column="0"  Margin="5 5" Height="25" Background="#26FF0000"/>
+                                                <Label x:Name="UI_PlayerDex" Content="Dex: 00" Grid.Column="1"  Margin="5 5" Height="25" Background="#2600FF00"/>
+                                                <Label x:Name="UI_PlayerInt" Content="Int: 00" Grid.Column="2"  Margin="5 5" Height="25" Background="#260000FF"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <Label Name="UI_PlayerDmgEffect1" Content="DmgEffect" Margin="0 5"/>
+                                <Label Name="UI_PlayerDmgEffect2" Content="DmgEffect" Margin="0 5"/>
+                                <Label Name="UI_PlayerDmgEffect3" Content="DmgEffect" Margin="0 5"/>
+                            </StackPanel>
+                        </Border>
+                    </TabItem>
+                    <TabItem Header="Items">
+                        <Border Padding="5">
+                            <StackPanel>
+                                <Button Content="Equip" Margin="0 5" Height="25"/>
+
+                                <Border BorderBrush="{StaticResource BackgroundNormal}" BorderThickness="2" Padding="5 5" Margin="0 5" Height="Auto">
+                                    <TreeView>
+                                        <TreeViewItem Header="Weapons">
+                                            <TreeViewItem Header="WoodSword"/>
+                                            <TreeViewItem Header="IronSword"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="Armor">
+                                            <TreeViewItem Header="ClothArmor"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="treasure">
+                                        </TreeViewItem>
+                                    </TreeView>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                    </TabItem>
+                    <TabItem Header="Skills">
+                        <StackPanel>
+                            <Label Name="UI_PlayerSkillMelee" Content="Melee" Height="20" Margin="5"/>
+                            <Border Padding="10 0" Background="Transparent">
+                                <StackPanel>
+                                    <Label Name="UI_PlayerSkillAxes" Content="Axes" Height="20" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillDaggers" Content="Daggers" Height="20" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillGreatAxes" Content="GreatAxes" Height="20" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillSpears" Content="Spears" Height="20" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillSwords" Content="Swords" Height="20" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillUnarmed" Content="Unarmed" Height="20" Margin="5"/>
+                                </StackPanel>
+                            </Border>
+                            <Label Name="UI_PlayerSkillRanged" Content="Ranged" Height="20" Margin="5"/>
+                            <Border Padding="10 0" Background="Transparent">
+                                <StackPanel>
+                                    <Label Name="UI_PlayerSkillBows" Content="Bows" Height="20" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillCrossbows" Content="CrossBow" Height="20" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillGuns" Content="Guns" Height="20" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillJavelins" Content="Javelins" Height="20" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillThrowingWeapons" Content="ThrowingWeapons" Height="20" Margin="5"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="82"/>
+            </Grid.RowDefinitions>
+
+            <Border Width="Auto" Height="Auto" Margin="10" Grid.Row="0" Background="#7F00050A">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="178.884"/>
+                        <ColumnDefinition Width="87.116"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Background="{StaticResource BackgroundNormal}" Width="Auto" Height="Auto" Padding="5 5" Grid.Column="0" Margin="10">
+                        <ScrollViewer>
+                            <TextBlock Name="Log" Padding="5" MouseRightButtonDown="Log_MouseRightButtonDown"/>
+                        </ScrollViewer>
+                    </Border>
+
+                    <Border Name="TEST123" Background="{StaticResource BackgroundNormal}" Width="246" Padding="5 5" Grid.Column="1" Margin="10" Grid.ColumnSpan="2">
+                        <StackPanel Name="EnemyBox">
+                            <Label x:Name="UI_EnemyName" Content="Enemy Name" Margin="0 5" Height="25"/>
+                            <Label x:Name="UI_EnemyLevel" Content="Enemy Level" Margin="0 5" Height="25"/>
+
+                            <Border BorderBrush="{StaticResource BackgroundNormal}" BorderThickness="2" Padding="5 5" Margin="0 5" Height="Auto">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label x:Name="UI_EnemyWeapon" Content="Weapon Name" Grid.Row="0"  Margin="5 5" Height="25"/>
+                                    <Label x:Name="UI_EnemyArmor" Content="Armor Name" Grid.Row="1" Margin="5 5" Height="25"/>
+
+                                    <Grid Grid.Row="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label x:Name="UI_EnemyHp" Content="Hp: 000" Grid.Column="0"  Margin="5 5" Height="25"/>
+                                            <Label x:Name="UI_EnemyHpMax" Content="Hp Max: 000" Grid.Column="1"  Margin="5 5" Height="25"/>
+                                        </Grid>
+
+                                        <Grid Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label x:Name="UI_EnemyDmg" Content="Dmg: 00" Grid.Column="0"  Margin="5 5" Height="25"/>
+                                            <Label x:Name="UI_EnemyDef" Content="Def: 00" Grid.Column="1"  Margin="5 5" Height="25"/>
+                                        </Grid>
+
+                                        <Grid Grid.Row="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label x:Name="UI_EnemyStr" Content="Str: 00" Grid.Column="0"  Margin="5 5" Height="25" Background="#26FF0000"/>
+                                            <Label x:Name="UI_EnemyDex" Content="Dex: 00" Grid.Column="1"  Margin="5 5" Height="25" Background="#2600FF00"/>
+                                            <Label x:Name="UI_EnemyInt" Content="Int: 00" Grid.Column="2"  Margin="5 5" Height="25" Background="#260000FF"/>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <Label Name="UI_EnemyDmgEffect1" Content="DmgEffect" Margin="0 5"/>
+                            <Label Name="UI_EnemyDmgEffect2" Content="DmgEffect" Margin="0 5"/>
+                            <Label Name="UI_EnemyDmgEffect3" Content="DmgEffect" Margin="0 5"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border Width="Auto" Height="Auto" Margin="10 0 10 5" Grid.Row="1" Background="{StaticResource BackgroundNormal}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="Button1" Content="1" Grid.Row="0" Width="120" Height="25" Grid.Column="0" Click="Button_Click_1"/>
+                    <Button x:Name="Button2" Content="2" Grid.Row="0" Width="120" Height="25" Grid.Column="1" Click="Button_Click_2"/>
+                    <Button x:Name="Button3" Content="3" Grid.Row="0" Width="120" Height="25" Grid.Column="2" Click="Button_Click_3"/>
+                    <Button x:Name="Button4" Content="4" Grid.Row="0" Width="120" Height="25" Grid.Column="3" Click="Button_Click_4"/>
+                    <Button x:Name="Button5" Content="5" Grid.Row="0" Width="120" Height="25" Grid.Column="4" Click="Button_Click_5"/>
+
+                    <Button x:Name="Button6" Content="6" Grid.Row="1" Width="120" Height="25" Grid.Column="0" Click="Button_Click_6"/>
+                    <Button x:Name="Button7" Content="7" Grid.Row="1" Width="120" Height="25" Grid.Column="1" Click="Button_Click_7"/>
+                    <Button x:Name="Button8" Content="8" Grid.Row="1" Width="120" Height="25" Grid.Column="2" Click="Button_Click_8"/>
+                    <Button x:Name="Button9" Content="9" Grid.Row="1" Width="120" Height="25" Grid.Column="3" Click="Button_Click_9"/>
+                    <Button x:Name="Button10" Content="10" Grid.Row="1" Width="120" Height="25" Grid.Column="4" Click="Button_Click_10"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Hp" Grid.Column="0" Width="25"/>
+            <ProgressBar x:Name="UI_PlayerHpBar" Value="75" Grid.Column="1" Foreground="#3FFF3434" Background="#7F000000" BorderBrush="{x:Null}"/>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="1">
+            <StatusBar Width="Auto" Height="Auto">
+                <StatusBarItem>
+                    <Label x:Name="UI_PlayerXP" Width="80" Height="Auto" Content="XP: 00000" Background="#3300C5FF"/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <Label x:Name="UI_PlayerGold" Width="80" Height="Auto" Content="Gold: 00000" Background="#33FFFF00"/>
+                </StatusBarItem>
+            </StatusBar>
+        </Grid>
     </Grid>
 </Window>

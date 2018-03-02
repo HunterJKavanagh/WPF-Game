@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WPFGame.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -54,6 +57,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Items\Armor.cs" />
+    <Compile Include="Items\Armors\ChainmailArmor.cs" />
+    <Compile Include="Items\Armors\ClothArmor.cs" />
+    <Compile Include="Items\Armors\LeatherArmor.cs" />
+    <Compile Include="Items\Armors\PlateArmor.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\Weapon.cs" />
+    <Compile Include="Items\Weapons\IronSword.cs" />
+    <Compile Include="Items\Weapons\SteelSword.cs" />
+    <Compile Include="Items\Weapons\Unarmed.cs" />
+    <Compile Include="Items\Weapons\WoodSword.cs" />
+    <Compile Include="Skills\CharacterSkills.cs" />
+    <Compile Include="Game\Text.cs" />
+    <Compile Include="Game\UICharacterInfo.cs" />
+    <Compile Include="State\CombateState.cs" />
+    <Compile Include="State\GameOverState.cs" />
+    <Compile Include="State\GameState.cs" />
+    <Compile Include="State\LevelUpState.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,6 +83,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Character class\Character.cs" />
+    <Compile Include="Character class\EnemyCharacter.cs" />
+    <Compile Include="Character class\Enemys\Skeleton.cs" />
+    <Compile Include="Character class\Enemys\Spider.cs" />
+    <Compile Include="Character class\Enemys\Zombie.cs" />
+    <Compile Include="Character class\PlayerCharacter.cs" />
+    <Compile Include="Combat\Attack\Attack.cs" />
+    <Compile Include="Combat\Attack\Bite.cs" />
+    <Compile Include="Combat\Attack\Punch.cs" />
+    <Compile Include="Combat\Attack\Slash.cs" />
+    <Compile Include="Combat\Attack\Stabe.cs" />
+    <Compile Include="Combat\Combat.cs" />
+    <Compile Include="Damage\Bleed.cs" />
+    <Compile Include="Damage\CharacterDamage.cs" />
+    <Compile Include="Damage\Damage.cs" />
+    <Compile Include="Damage\DamageEffect.cs" />
+    <Compile Include="Damage\Null.cs" />
+    <Compile Include="Damage\Poison.cs" />
+    <Compile Include="Game\Game.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -93,5 +133,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
