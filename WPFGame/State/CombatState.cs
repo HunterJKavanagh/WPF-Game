@@ -6,20 +6,34 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class GameOverState : State
+    class CombatState : State
     {
-        public GameOverState() : base("Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!")
+        public CombatState() : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "")
         {
-
+            Game.combat = new Combat(EnemyCharacter.GetRandomEnemy());
         }
 
         override public void Button1_Click()
         {
-            
+            if (Game.combat.CombatOver)
+            {
+                Game.State = new GameState();
+            }
+            else
+            {
+                Game.combat.Update(Game.player.weapon.Attacks[0]);
+            }
         }
         override public void Button2_Click()
         {
+            if(Game.combat.CombatOver)
+            {
 
+            }
+            else
+            {
+                Game.combat.Update(Game.player.weapon.Attacks[1]);
+            }            
         }
         override public void Button3_Click()
         {

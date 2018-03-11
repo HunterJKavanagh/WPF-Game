@@ -15,8 +15,8 @@ namespace WPFGame
 
         static public Text text = new Text();
 
-        static private GameState state = new GameState();
-        static public GameState State
+        static private State state = new GameState();
+        static public State State
         {
             get
             {

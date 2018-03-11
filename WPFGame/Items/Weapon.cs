@@ -19,6 +19,8 @@ namespace WPFGame
             this.Type = Type;
             this.Ap = Ap;
             this.Dmg = Dmg;
+
+			Category = "weapon";
         }
     }
 }

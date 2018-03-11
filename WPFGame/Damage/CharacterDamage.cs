@@ -21,6 +21,7 @@ namespace WPFGame
             {
                 if (dmgEffect.Chance >= Game.GetRandom().Next(100))
                 {
+                    int I = 0;
                     for (int i = 0; i < EffectList.Count; i++)
                     {
                         if (EffectList[i].Name == dmgEffect.Name)
@@ -28,8 +29,7 @@ namespace WPFGame
                             EffectList[i] = new DamageEffect(dmgEffect.Name, dmgEffect.EffectLength, dmgEffect.EffectDmg, dmgEffect.Chance);
                             break;
                         }
-                    }
-                    EffectList.Add(new DamageEffect(dmgEffect.Name, dmgEffect.EffectLength, dmgEffect.EffectDmg, dmgEffect.Chance));
+                    }                    
                 }
             }
         }

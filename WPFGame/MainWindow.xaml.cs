@@ -31,7 +31,7 @@ namespace WPFGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        Game game = new Game();
+        //Game game = new Game();
 
         private void GameStateChanged(object source, GameEvent e)
         {
@@ -176,8 +176,11 @@ namespace WPFGame
             //Enemy Box
             UI_EnemyWeapon.ToolTip = "Dmg: " + Game.combat.enemy.weapon.Dmg;
             //buttons
-            Button1.ToolTip = "Dmg:" + ((Game.player.weapon.Dmg * Game.player.Skills.GetSkillPercentage(Game.player.weapon.Type) + Game.player.GetInfo().Str) * Game.player.weapon.Attacks[0].Dmg) + " AP: " + (int)(Game.player.weapon.Ap * Game.player.weapon.Attacks[0].Ap);
-            Button2.ToolTip = "Dmg:" + ((Game.player.weapon.Dmg * Game.player.Skills.GetSkillPercentage(Game.player.weapon.Type) + Game.player.GetInfo().Str) * Game.player.weapon.Attacks[1].Dmg) + " AP: " + (int)(Game.player.weapon.Ap * Game.player.weapon.Attacks[1].Ap);
+			if(Game.State.GetType() == typeof(CombatState))
+			{
+				Button1.ToolTip = "Dmg:" + ((Game.player.weapon.Dmg * Game.player.Skills.GetSkillPercentage(Game.player.weapon.Type) + Game.player.GetInfo().Str) * Game.player.weapon.Attacks[0].Dmg) + " AP: " + (int)(Game.player.weapon.Ap * Game.player.weapon.Attacks[0].Ap);
+				Button2.ToolTip = "Dmg:" + ((Game.player.weapon.Dmg * Game.player.Skills.GetSkillPercentage(Game.player.weapon.Type) + Game.player.GetInfo().Str) * Game.player.weapon.Attacks[1].Dmg) + " AP: " + (int)(Game.player.weapon.Ap * Game.player.weapon.Attacks[1].Ap);
+			}            
         }
 
         public void UpDatePlayerBox()
@@ -221,8 +224,9 @@ namespace WPFGame
             UI_PlayerSkillGreatAxes.Content = "GreatAxes: " + Game.player.Skills.GreatAxes;
             UI_PlayerSkillSpears.Content = "Spears: " + Game.player.Skills.Spears;
             UI_PlayerSkillSwords.Content = "Swords: " + Game.player.Skills.Swords;
+			UI_PlayerSkillUnarmed.Content = "Unarmed: " + Game.player.Skills.Swords;
 
-            UI_PlayerSkillRanged.Content = "Swords: " + Game.player.Skills.Ranged;
+            UI_PlayerSkillRanged.Content = "Ranged: " + Game.player.Skills.Ranged;
             UI_PlayerSkillBows.Content = "Bow: " + Game.player.Skills.Bows;
             UI_PlayerSkillCrossbows.Content = "Cross: " + Game.player.Skills.Crossbows;
             UI_PlayerSkillGuns.Content = "Guns: " + Game.player.Skills.Guns;

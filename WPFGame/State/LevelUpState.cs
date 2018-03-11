@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class LevelUpState : GameState
+    class LevelUpState : State
     {
         public LevelUpState() : base("Level Up: Str", "Level Up: Dex", "level Up: Int", "Back")
         {

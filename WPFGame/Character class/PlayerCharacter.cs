@@ -7,6 +7,8 @@ namespace WPFGame
 {
     class PlayerCharacter : Character
     {
+        public Inventory inventory = new Inventory();
+
         //Player XP
         public int xp = 30;
         //player gold
@@ -23,12 +25,16 @@ namespace WPFGame
             MaxHealth = (strength * 100);
             Health = MaxHealth;
 
-            weapon = new WoodSword();
+            weapon = new Unarmed();
             armor = new ClothArmor();
 
             Tag = "Player";
             Name = "Player";
-        }
+
+			inventory.AddItem(new WoodSword());
+			inventory.AddItem(new SteelSword());
+			inventory.AddItem(new IronSword());
+		}
 
         //Player level up screen
         public void LevelUp(string command)

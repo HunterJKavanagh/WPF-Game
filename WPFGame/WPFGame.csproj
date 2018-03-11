@@ -62,6 +62,7 @@
     <Compile Include="Items\Armors\ClothArmor.cs" />
     <Compile Include="Items\Armors\LeatherArmor.cs" />
     <Compile Include="Items\Armors\PlateArmor.cs" />
+    <Compile Include="Items\Inventory.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\Weapon.cs" />
     <Compile Include="Items\Weapons\IronSword.cs" />
@@ -71,10 +72,15 @@
     <Compile Include="Skills\CharacterSkills.cs" />
     <Compile Include="Game\Text.cs" />
     <Compile Include="Game\UICharacterInfo.cs" />
-    <Compile Include="State\CombateState.cs" />
+    <Compile Include="State\CombatState.cs" />
     <Compile Include="State\GameOverState.cs" />
     <Compile Include="State\GameState.cs" />
+    <Compile Include="State\InventoryState.cs" />
+    <Compile Include="State\InventoryStateCategory.cs" />
+    <Compile Include="State\InventoryStateItem.cs" />
     <Compile Include="State\LevelUpState.cs" />
+    <Compile Include="State\State.cs" />
+    <Compile Include="State\StateTemp.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

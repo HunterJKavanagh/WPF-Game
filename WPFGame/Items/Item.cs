@@ -8,6 +8,7 @@ namespace WPFGame
 {
     class Item
     {
+        public string Category;
         public string Name;
         public int Cost;
 

@@ -65,7 +65,7 @@ namespace WPFGame
 
                     CombatOver = true;
                     Game.State.ButtonNames[0] = "Back";
-                    Game.State.ButtonNames[1] = "Button 2";
+                    Game.State.ButtonNames[1] = "";
                 }
                 else
                 {

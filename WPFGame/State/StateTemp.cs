@@ -6,34 +6,20 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class CombateState : GameState
+    class StateTemp : State
     {
-        public CombateState() : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "Button 2")
+        public StateTemp() : base()
         {
-            Game.combat = new Combat(EnemyCharacter.GetRandomEnemy());
+
         }
 
         override public void Button1_Click()
         {
-            if (Game.combat.CombatOver)
-            {
-                Game.State = new GameState();
-            }
-            else
-            {
-                Game.combat.Update(Game.player.weapon.Attacks[0]);
-            }
+
         }
         override public void Button2_Click()
         {
-            if(Game.combat.CombatOver)
-            {
 
-            }
-            else
-            {
-                Game.combat.Update(Game.player.weapon.Attacks[1]);
-            }            
         }
         override public void Button3_Click()
         {
@@ -69,3 +55,4 @@ namespace WPFGame
         }
     }
 }
+
