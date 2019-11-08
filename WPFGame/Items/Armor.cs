@@ -12,6 +12,8 @@ namespace WPFGame
         public Armor(string Name, int Cost, int Def) : base(Name, Cost)
         {
             this.Def = Def;
+
+			Category = "armor";
         }
-    }
+	}
 }

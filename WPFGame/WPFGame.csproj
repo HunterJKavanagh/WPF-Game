@@ -13,6 +13,21 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,7 +49,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>WPFGame.App</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -58,27 +74,29 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Items\Armor.cs" />
-    <Compile Include="Items\Armors\ChainmailArmor.cs" />
-    <Compile Include="Items\Armors\ClothArmor.cs" />
-    <Compile Include="Items\Armors\LeatherArmor.cs" />
-    <Compile Include="Items\Armors\PlateArmor.cs" />
     <Compile Include="Items\Inventory.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\Weapon.cs" />
-    <Compile Include="Items\Weapons\IronSword.cs" />
-    <Compile Include="Items\Weapons\SteelSword.cs" />
-    <Compile Include="Items\Weapons\Unarmed.cs" />
-    <Compile Include="Items\Weapons\WoodSword.cs" />
+    <Compile Include="Map\Components\Component.cs" />
+    <Compile Include="Map\Components\Dungeon\Dungeon.cs" />
+    <Compile Include="Map\Components\Dungeon\Room.cs" />
+    <Compile Include="Map\Components\Shop.cs" />
+    <Compile Include="Map\Location.cs" />
+    <Compile Include="Map\Map.cs" />
+    <Compile Include="Map\Point.cs" />
     <Compile Include="Skills\CharacterSkills.cs" />
     <Compile Include="Game\Text.cs" />
     <Compile Include="Game\UICharacterInfo.cs" />
-    <Compile Include="State\CombatState.cs" />
-    <Compile Include="State\GameOverState.cs" />
-    <Compile Include="State\GameState.cs" />
-    <Compile Include="State\InventoryState.cs" />
-    <Compile Include="State\InventoryStateCategory.cs" />
-    <Compile Include="State\InventoryStateItem.cs" />
-    <Compile Include="State\LevelUpState.cs" />
+    <Compile Include="State\Combat\CombatState.cs" />
+    <Compile Include="State\Component\DungeonState.cs" />
+    <Compile Include="State\Component\ShopState.cs" />
+    <Compile Include="State\Game\GameOverState.cs" />
+    <Compile Include="State\Game\GameState.cs" />
+    <Compile Include="State\Inventory\InventoryState.cs" />
+    <Compile Include="State\Inventory\InventoryStateCategory.cs" />
+    <Compile Include="State\Inventory\InventoryStateItem.cs" />
+    <Compile Include="State\Map\MapState.cs" />
+    <Compile Include="State\Skills\SkillState.cs" />
     <Compile Include="State\State.cs" />
     <Compile Include="State\StateTemp.cs" />
     <Page Include="MainWindow.xaml">
@@ -91,15 +109,8 @@
     </Compile>
     <Compile Include="Character class\Character.cs" />
     <Compile Include="Character class\EnemyCharacter.cs" />
-    <Compile Include="Character class\Enemys\Skeleton.cs" />
-    <Compile Include="Character class\Enemys\Spider.cs" />
-    <Compile Include="Character class\Enemys\Zombie.cs" />
     <Compile Include="Character class\PlayerCharacter.cs" />
     <Compile Include="Combat\Attack\Attack.cs" />
-    <Compile Include="Combat\Attack\Bite.cs" />
-    <Compile Include="Combat\Attack\Punch.cs" />
-    <Compile Include="Combat\Attack\Slash.cs" />
-    <Compile Include="Combat\Attack\Stabe.cs" />
     <Compile Include="Combat\Combat.cs" />
     <Compile Include="Damage\Bleed.cs" />
     <Compile Include="Damage\CharacterDamage.cs" />
@@ -139,6 +150,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

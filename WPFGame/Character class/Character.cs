@@ -8,8 +8,9 @@ namespace WPFGame
     class Character
     {
         public int DamageTaken;
-        protected string Tag;
-        protected string Name;
+		public string Name;
+		protected string Tag;
+        
 
         protected int MaxHealth;
         protected int Health;
@@ -35,18 +36,14 @@ namespace WPFGame
 
         public Character()
         {
-        }
+			
+		}
 
         //gets the dmage from the attacker
         public Damage GetDamage(Attack attack)
         {
-            int dmg = (int)(weapon.Dmg * Skills.GetSkillPercentage(weapon.Type)) + Strength;
-            dmg = (int)(dmg * attack.Dmg);
-
-            int ap = weapon.Ap;
-            ap = (int)(ap * attack.Ap);
-
-            return new Damage(ap, dmg, attack.Effect);
+			Damage damage = new Damage((int)(Game.player.weapon.Ap * attack.Ap), (int)(((weapon.Dmg * Skills.GetSkillPercentage(weapon.Type)) + GetInfo().Str) * attack.Dmg), attack.Effect);
+			return damage;
         }
 
         //deals damage to character
@@ -55,18 +52,15 @@ namespace WPFGame
             CharDmg.AddDamage(damage.effect);
             int def = armor.Def;
 
-            if(def - damage.Ap > 0)
+            if(def > damage.Ap && damage.Dmg > (def - damage.Ap))
             {
-                if(damage.Dmg - (def - damage.Ap) > 0)
-                {
-                    DamageTaken = damage.Dmg - def;
-                    Health -= damage.Dmg - def; 
-                }
+                DamageTaken = damage.Dmg - (def - damage.Ap);
+                Health -= DamageTaken; 
             }
             else
             {
                 DamageTaken = damage.Dmg;
-                Health -= damage.Dmg;
+                Health -= DamageTaken;
             }
 
             Health -= CharDmg.GetDamage();
@@ -87,6 +81,8 @@ namespace WPFGame
 
         public UICharacterInfo GetInfo()
         {
+			Weapon weapon = this.weapon ?? (Weapon)Item.GetItem("IronSword");
+			Armor armor = this.armor ?? (Armor)Item.GetItem("ClothArmor");
             return new UICharacterInfo(Name, weapon.Name, armor.Name, CharDmg.EffectList, Health, MaxHealth, Strength, Dexterity, Intelligence, armor.Def, weapon.Dmg);
         }
     }

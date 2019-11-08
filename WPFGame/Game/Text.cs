@@ -14,8 +14,6 @@ namespace WPFGame
         static public Brush PlayerColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#00FF00"));
         static public Brush EnemyColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF0000"));
 
-        public bool HidEnemyBox = true;
-
         public bool OPLogUpdate = false;
 
         public Brush TextColor = null;

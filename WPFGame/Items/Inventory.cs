@@ -8,46 +8,40 @@ namespace WPFGame
 {
     class Inventory
     {
-        private List<List<Item>> inventoryList = new List<List<Item>>();
+        private List<List<string>> inventoryList = new List<List<string>>();       
 
-        private Dictionary<string, int> inventoryDic = new Dictionary<string, int>();
-		public Dictionary<string, int> GetInventoryDic()
-		{
-			return inventoryDic;
-		}
+		public bool IsPlayerInv;
 
-
-		public Inventory()
+		public Inventory(bool IsPlayerInv)
         {
-            inventoryDic.Add("weapon", 0);
-            inventoryDic.Add("armor", 1);
+			this.IsPlayerInv = IsPlayerInv;
 			
-			for(int i = 0; i < inventoryDic.Count; i++)
+			for(int i = 0; i < Item.Categorys.Count; i++)
 			{
-				inventoryList.Add(new List<Item>());
+				inventoryList.Add(new List<string>());
 			}
 		}
 
-        public void AddItem(Item item)
+        public void AddItem(string item)
         {
             //throws  exception if the Category is not found in inventorDic
-            if(inventoryDic.ContainsKey(item.Category) == false)
+            if(Item.Categorys.ContainsKey(Item.GetItem(item).Category) == false)
             {
                 throw new System.ArgumentException("Category not found");
             }
 
-            inventoryList[inventoryDic[item.Category]].Add(item);
+            inventoryList[Item.Categorys[Item.GetItem(item).Category]].Add(item);
         }
 
-        public List<Item> GetItems(string category)
+        public List<string> GetItems(string category)
         {
 			//throws  exception if the Category is not found in inventorDic
-			if(inventoryDic.ContainsKey(category) == false)
+			if(Item.Categorys.ContainsKey(category) == false)
             {
                 throw new System.ArgumentException("Category not found");
             }
 
-            return inventoryList[inventoryDic[category]];
+            return inventoryList[Item.Categorys[category]];
         }
     }
 }

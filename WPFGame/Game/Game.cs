@@ -8,10 +8,10 @@ namespace WPFGame
     class Game
     {
         static public event GameEventHandler StateChange;
-        static private Random random = new Random();
+        static private Random random = new Random(0);
         static public PlayerCharacter player = new PlayerCharacter(5, 5, 5);        
         
-        static public Combat combat = new Combat(new Zombie());
+        static public Combat combat = new Combat(EnemyCharacter.GetEnemy("Zombie"));
 
         static public Text text = new Text();
 
@@ -33,6 +33,8 @@ namespace WPFGame
             }
         }
 
+		static public Map map = new Map(8, 8);
+
         static public UICharacterInfo UIPlayerInfo = new UICharacterInfo(player.GetInfo());
         static public UICharacterInfo UIEnemyInfo = new UICharacterInfo(combat.enemy.GetInfo());
 
@@ -41,11 +43,9 @@ namespace WPFGame
 
         }
 
-        static public Random GetRandom(int seed = 0)
+        static public Random GetRandom()
         {
-            random = new Random();
-
-            return new Random();
+            return random;
         }
 
         static public void UpdateInfo()

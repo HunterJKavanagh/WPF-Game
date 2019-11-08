@@ -8,7 +8,7 @@ namespace WPFGame
 {
     class UICharacterInfo
     {
-        public int DamgeTaken;
+        //public int DamgeTaken;
 
         public string Name;
         public string WeaponName;

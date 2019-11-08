@@ -51,7 +51,7 @@ namespace WPFGame
             }
             else
             {
-                playerHit = false;
+                enemyHit = false;
             }
 
             PrintStats(enemy.DamageTaken, Game.player.DamageTaken);
@@ -79,7 +79,7 @@ namespace WPFGame
             if (playerHit)
             {
                 Game.text.AddToOPLog("You attacked the enemy!");
-                Game.text.AddToOPLog("\tDamge: " + playerDmg, Text.PlayerColor);
+                Game.text.AddToOPLog("\tDamage: " + playerDmg, Text.PlayerColor);
             }
             else
             {
@@ -90,7 +90,7 @@ namespace WPFGame
             if(enemyHit)
             {
                 Game.text.AddToOPLog("The Enemy attacked you!");
-                Game.text.AddToOPLog("\tDamge: " + enemyDmg, Text.EnemyColor);
+                Game.text.AddToOPLog("\tDamage: " + enemyDmg, Text.EnemyColor);
             }
             else
             {

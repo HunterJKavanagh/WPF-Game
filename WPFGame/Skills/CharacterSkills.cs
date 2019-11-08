@@ -8,50 +8,24 @@ namespace WPFGame
 {
     class CharacterSkills
     {
-        //Melee skills
-        public int Melee;
-        public int Axes;
-        public int Daggers;
-        public int GreatAxes;       
-        public int Spears;
-        public int Swords;
-        public int Unarmed;
-        //Ranged skills
-        public int Ranged;
-        public int Bows;
-        public int Crossbows;
-        public int Guns;
-        public int Javelins;
-        public int ThrowingWeapons;
-        //Magic skills
-        public int Magic;
-        public int BattleMagic;
-        public int BrightMagic;
-        public int DarkMagic;
-
-        public CharacterSkills(int Melee = 50, int Axes = 1, int Daggers = 1, int GreatAxes = 1, int Spears = 1, int Swords = 75, int Unarmed = 1,
-            int Ranged = 10, int Bows = 1, int Crossbows = 1, int Guns = 1, int Javelins = 1, int ThrowingWeapons = 1,
-            int Magic = 10, int BattleMagic = 1, int BrightMagic = 1, int DarkMagic = 1)
+        public Dictionary<string, int> Melee = new Dictionary<string, int>()
         {
-            this.Melee = Melee;
-            this.Axes = Axes;
-            this.Daggers = Daggers;
-            this.GreatAxes = GreatAxes;
-            this.Spears = Spears;
-            this.Swords = Swords;
-            this.Unarmed = Unarmed;
+            {"Melee",  0 },
+            {"Axes", 0 },
+            {"Daggers", 0 },
+            {"Spears", 0 },
+            {"Swords", 0 },
+            {"Unamred", 0 }
+        };
 
-            this.Ranged = Ranged;
-            this.Bows = Bows;
-            this.Crossbows = Crossbows;
-            this.Guns = Guns;
-            this.Javelins = Javelins;
-            this.ThrowingWeapons = ThrowingWeapons;
-
-            this.Magic = Magic;
-            this.BattleMagic = BattleMagic;
-            this.BrightMagic = BrightMagic;
-            this.DarkMagic = DarkMagic;
+        public CharacterSkills(int Melee = 25, int Axes = 25, int Daggers = 25, int Spears = 25, int Swords = 25, int Unarmed = 25)
+        {
+            this.Melee["Melee"] = Melee;
+            this.Melee["Axes"] = Axes;
+            this.Melee["Daggers"] = Daggers;
+            this.Melee["Spears"] = Spears;
+            this.Melee["Swords"] = Swords;
+            this.Melee["Unarmed"] = Unarmed;
         }
 
         public float GetSkillPercentage(string skillType)
@@ -60,15 +34,24 @@ namespace WPFGame
 
            switch (skillType)
             {
-                case "Sword":
-                    percentage = ((Melee / 2) + Swords) / 100;
-                    break;
+				case "Axes":
+					percentage = ((Melee["Melee"] / 2) + Melee["Axes"]) / 100;
+					return percentage;
+				case "Daggers":
+					percentage = ((Melee["Melee"] / 2) + Melee["Daggers"]) / 100;
+					return percentage;
+				case "Spears":
+					percentage = ((Melee["Melee"] / 2) + Melee["Spears"]) / 100;
+					return percentage;
+				case "Sword":
+                    percentage = ((Melee["Melee"] / 2) + Melee["Swords"]) / 100;
+                    return percentage;
                 case "Unarmed":
-                    percentage = ((Melee / 2) + Unarmed) / 100;
-                    break;
+                    percentage = ((Melee["Melee"] / 2) + Melee["Unarmed"]) / 100;
+                    return percentage;
             }
 
-            return percentage;
+            throw new System.ArgumentException("Skill Type Not Found");
         }
     }
 }

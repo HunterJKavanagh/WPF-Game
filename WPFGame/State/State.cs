@@ -8,9 +8,14 @@ namespace WPFGame
 {
 	class State
 	{
+        public bool EnemyBoxVis = false;
+
+		public string HelpBoxText;
+
 		public string[] ButtonNames = new string[10];
-		public State(string Name1 = "", string Name2 = "", string Name3 = "", string Name4 = "", string Name5 = "", string Name6 = "", string Name7 = "", string Name8 = "", string Name9 = "", string Name10 = "")
+		public State(string Name1 = "", string Name2 = "", string Name3 = "", string Name4 = "", string Name5 = "", string Name6 = "", string Name7 = "", string Name8 = "", string Name9 = "", string Name10 = "", string HelpBoxText = "")
 		{
+			this.HelpBoxText = HelpBoxText;
 
 			ButtonNames[0] = Name1;
 			ButtonNames[1] = Name2;
@@ -61,6 +66,15 @@ namespace WPFGame
 
 		}
 		virtual public void Button10_Click()
+		{
+
+		}
+
+		virtual public void Button_Back()
+		{
+
+		}
+		virtual public void Button_Next()
 		{
 
 		}

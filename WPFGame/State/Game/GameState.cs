@@ -8,26 +8,26 @@ namespace WPFGame
 {
     class GameState : State
     {
-        public GameState() : base("Inventory", "Level Up", "Start Combat", "Button 4", "Button 5", "Button 6", "Button 7", "Button 8", "Button 9", "Button 10")
+        public GameState() : base("Map", "Inventory", "Skills", HelpBoxText: "* Map lets you move to  a new location \n* Inventory lets you see and equip your items \n* Skills lets you see and level your skills")
         {
 
         }
 
         override public void Button1_Click()
         {
-			Game.State = new InventoryState();
+            Game.State = new MapState();
         }
         override public void Button2_Click()
         {
-            Game.State = new LevelUpState();
+            Game.State = new InventoryState(Game.player.inventory);
         }
         override public void Button3_Click()
         {
-			Game.State = new CombatState();
-		}
+            Game.State = new SkillState();
+        }
         override public void Button4_Click()
         {
-
+			
         }
         override public void Button5_Click()
         {
@@ -53,5 +53,14 @@ namespace WPFGame
         {
 
         }
-    }
+
+		override public void Button_Back()
+		{
+
+		}
+		override public void Button_Next()
+		{
+
+		}
+	}
 }

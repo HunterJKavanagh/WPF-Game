@@ -21,7 +21,6 @@ namespace WPFGame
             {
                 if (dmgEffect.Chance >= Game.GetRandom().Next(100))
                 {
-                    int I = 0;
                     for (int i = 0; i < EffectList.Count; i++)
                     {
                         if (EffectList[i].Name == dmgEffect.Name)

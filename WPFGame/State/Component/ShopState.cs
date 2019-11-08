@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class GameOverState : State
+    class ShopState : State
     {
-        public GameOverState() : base("Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!")
-        {
+        public ShopState() : base("Continue to Shop")
 
-        }
+		{
+			
+		}
 
         override public void Button1_Click()
         {
-            
-        }
+			Game.State = new InventoryState(((Shop)Game.map.GetCurrentLocaton().component).inventory);
+		}
         override public void Button2_Click()
         {
 
@@ -53,5 +54,14 @@ namespace WPFGame
         {
 
         }
-    }
+
+		override public void Button_Back()
+		{
+			Game.State = new GameState();
+		}
+		override public void Button_Next()
+		{
+
+		}
+	}
 }

@@ -5,15 +5,18 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!--Control colors.-->
+        <SolidColorBrush x:Key="Foreground" Color="#FFC8C8C8"/>
         <SolidColorBrush x:Key="BackgroundNormal" Color="#7F87898C"/>
         <SolidColorBrush x:Key="BackgroundHighligh" Color="#CC87898C"/>
         <!-- Font -->
         <Style TargetType="{x:Type Window}">
             <Setter Property="FontFamily" Value="Segoe UI Semibold" />
+            <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
         </Style>
         <!-- Button -->
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="{StaticResource BackgroundNormal}"/>
+            <Setter Property="FontSize" Value="18"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -23,6 +26,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="{StaticResource BackgroundHighligh}"/>
@@ -32,6 +36,7 @@
         <!-- lable -->
         <Style TargetType="{x:Type Label}">
             <Setter Property="Background" Value="{StaticResource BackgroundNormal}"/>
+            <Setter Property="FontSize" Value="18"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Label}">
@@ -41,6 +46,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
         </Style>
         <!-- TablContorl -->
         <Style TargetType="{x:Type TabControl}">
@@ -66,6 +72,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
         </Style>
         <!-- TreeView -->
         <Style TargetType="{x:Type TreeView}">

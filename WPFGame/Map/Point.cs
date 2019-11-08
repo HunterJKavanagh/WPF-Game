@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class ClothArmor : Armor
+    struct Point
     {
-        public ClothArmor(string Name = "ClothArmor", int Cost = 15, int Def = 1) : base(Name, Cost, Def)
-        {
+        public int X;
+        public int Y;
 
+        public Point(int X, int Y)
+        {
+            this.X = X;
+            this.Y = Y;
         }
     }
 }

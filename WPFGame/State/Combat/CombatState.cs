@@ -6,20 +6,36 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class StateTemp : State
+    class CombatState : State
     {
-        public StateTemp() : base()
+		public CombatState(EnemyCharacter enemy = null) : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "")
         {
-
+            Game.combat = new Combat(enemy) ?? new Combat(EnemyCharacter.GetRandomEnemy());
+            EnemyBoxVis = true;
         }
-
+		
         override public void Button1_Click()
         {
-
+            if (Game.combat.CombatOver)
+            {
+                //Game.State = new GameState();
+                Game.State = new DungeonState();
+            }
+            else
+            {
+                Game.combat.Update(Game.player.weapon.Attacks[0]);
+            }
         }
         override public void Button2_Click()
         {
+            if(Game.combat.CombatOver)
+            {
 
+            }
+            else
+            {
+                Game.combat.Update(Game.player.weapon.Attacks[1]);
+            }            
         }
         override public void Button3_Click()
         {
@@ -53,15 +69,5 @@ namespace WPFGame
         {
 
         }
-
-		override public void Button_Back()
-		{
-
-		}
-		override public void Button_Next()
-		{
-
-		}
-	}
+    }
 }
-
