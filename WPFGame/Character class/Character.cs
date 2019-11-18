@@ -7,6 +7,7 @@ namespace WPFGame
 {
     class Character
     {
+        //Test
         public int DamageTaken;
 		public string Name;
 		protected string Tag;
