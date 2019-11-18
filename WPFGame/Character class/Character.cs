@@ -24,9 +24,9 @@ namespace WPFGame
             return Size;
         }
         
-        protected int Strength;
-        protected int Dexterity;
-        protected int Intelligence;
+        public int Strength;
+        public int Dexterity;
+        public int Intelligence;
         
         public Weapon weapon;
         public Armor armor;

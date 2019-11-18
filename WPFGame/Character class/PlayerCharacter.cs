@@ -11,6 +11,7 @@ namespace WPFGame
 
         //Player XP
 		static public int StartXp = 75;
+        public int attribute_points = 10;
         public int xp;
         //player gold
         public int Gold = 250;

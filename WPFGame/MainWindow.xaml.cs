@@ -300,6 +300,10 @@ namespace WPFGame
 			UI_CC_SkillSwords.Content = "Swords: " + Game.player.Skills.Melee["Swords"];
 			UI_CC_SkillUnarmed.Content = "Unarmed: " + Game.player.Skills.Melee["Unarmed"];
 
+            UI_CC_Str.Content = "Str: " + Game.player.Strength;
+            UI_CC_Dex.Content = "Dex: " + Game.player.Dexterity;
+            UI_CC_Int.Content = "Int: " + Game.player.Intelligence;
+
 			UI_CC_Xp.Content = "Xp: " + Game.player.xp + " / " + PlayerCharacter.StartXp;
 		}
 
@@ -556,14 +560,81 @@ namespace WPFGame
             }
             
 			UpDateCCUI();
-		}		
+		}
+        private void UI_CC_StrPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Game.player.attribute_points > 0)
+            {
+                Game.player.attribute_points -= 1;
+                Game.player.Strength += 1;
+            }
 
-		private void UI_CC_CreatCharacterButton_Click(object sender, RoutedEventArgs e)
+            UpDateCCUI();
+        }
+
+        private void UI_CC_StrMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Game.player.Strength > 1)
+            {
+                Game.player.attribute_points += 1;
+                Game.player.Strength -= 1;
+            }
+
+            UpDateCCUI();
+        }
+
+        private void UI_CC_DexPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Game.player.attribute_points > 0)
+            {
+                Game.player.attribute_points -= 1;
+                Game.player.Dexterity += 1;
+            }
+
+            UpDateCCUI();
+        }
+
+        private void UI_CC_DexMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Game.player.Dexterity > 1)
+            {
+                Game.player.attribute_points += 1;
+                Game.player.Dexterity -= 1;
+            }
+
+            UpDateCCUI();
+        }
+
+        private void UI_CC_IntPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Game.player.attribute_points > 0)
+            {
+                Game.player.attribute_points -= 1;
+                Game.player.Intelligence += 1;
+            }
+
+            UpDateCCUI();
+        }
+
+        private void UI_CC_IntMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Game.player.Intelligence > 1)
+            {
+                Game.player.attribute_points += 1;
+                Game.player.Intelligence -= 1;
+            }
+
+            UpDateCCUI();
+        }
+
+        private void UI_CC_CreatCharacterButton_Click(object sender, RoutedEventArgs e)
 		{
             Game.player.Name = UI_CC_PlayerName.Text;
             UI_CharacterCreater.IsOpen = false;
             UnHidGrids();
             UpDateUI();
-        } 
-	}
+        }
+
+        
+    }
 }

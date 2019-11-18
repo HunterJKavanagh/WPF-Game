@@ -338,14 +338,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button Name="UI_CC_StrPlus" Grid.Column="0" Content="Str +" Width="55" Height="30" Background="#26FF0000"/>
-                                <Button Name="UI_CC_StrMinus" Grid.Column="1" Content="Str -" Width="55" Height="30" Background="#26FF0000"/>
+                                <Button Name="UI_CC_StrPlus" Grid.Column="0" Content="Str +" Width="55" Height="30" Background="#26FF0000" Click="UI_CC_StrPlus_Click"/>
+                                <Button Name="UI_CC_StrMinus" Grid.Column="1" Content="Str -" Width="55" Height="30" Background="#26FF0000" Click="UI_CC_StrMinus_Click"/>
 
-                                <Button Name="UI_CC_DexMinus" Grid.Column="2" Content="Dex +" Width="55" Height="30" Background="#2600FF00"/>
-                                <Button Name="UI_CC_DexPlus" Grid.Column="3" Content="Dex -" Width="55" Height="30" Background="#2600FF00"/>
+                                <Button Name="UI_CC_DexPlus" Grid.Column="2" Content="Dex +" Width="55" Height="30" Background="#2600FF00" Click="UI_CC_DexPlus_Click"/>
+                                <Button Name="UI_CC_DexMinus" Grid.Column="3" Content="Dex -" Width="55" Height="30" Background="#2600FF00" Click="UI_CC_DexMinus_Click"/>
 
-                                <Button Name="UI_CC_IntPlus" Grid.Column="4" Content="Int +" Width="55" Height="30" Background="#260000FF"/>
-                                <Button Name="UI_CC_IntMinus" Grid.Column="5" Content="Int -" Width="55" Height="30" Background="#260000FF"/>
+                                <Button Name="UI_CC_IntPlus" Grid.Column="4" Content="Int +" Width="55" Height="30" Background="#260000FF" Click="UI_CC_IntPlus_Click"/>
+                                <Button Name="UI_CC_IntMinus" Grid.Column="5" Content="Int -" Width="55" Height="30" Background="#260000FF" Click="UI_CC_IntMinus_Click"/>
                             </Grid>
                         </Border>
                         <Border Margin="10" Padding="10" BorderThickness="5" BorderBrush="{StaticResource BackgroundHighligh}">
