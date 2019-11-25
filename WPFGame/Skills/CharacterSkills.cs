@@ -34,13 +34,13 @@ namespace WPFGame
 
            switch (skillType)
             {
-				case "Axes":
+				case "Axe":
 					percentage = ((Melee["Melee"] / 2) + Melee["Axes"]) / 100;
 					return percentage;
-				case "Daggers":
+				case "Dagger":
 					percentage = ((Melee["Melee"] / 2) + Melee["Daggers"]) / 100;
 					return percentage;
-				case "Spears":
+				case "Spear":
 					percentage = ((Melee["Melee"] / 2) + Melee["Spears"]) / 100;
 					return percentage;
 				case "Sword":

@@ -8,7 +8,7 @@ namespace WPFGame
 {
     class CombatState : State
     {
-		public CombatState(EnemyCharacter enemy = null) : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "")
+		public CombatState(EnemyCharacter enemy = null) : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "", "Move F", "Move B")
         {
             Game.combat = new Combat(enemy) ?? new Combat(EnemyCharacter.GetRandomEnemy());
             EnemyBoxVis = true;
@@ -18,7 +18,6 @@ namespace WPFGame
         {
             if (Game.combat.CombatOver)
             {
-                //Game.State = new GameState();
                 Game.State = new DungeonState();
             }
             else
@@ -39,11 +38,31 @@ namespace WPFGame
         }
         override public void Button3_Click()
         {
+            if (Game.combat.CombatOver)
+            {
 
+            }
+            else
+            {
+                Game.combat.dis -= 1;
+                Game.text.AddToOPLog("Dis = " + Game.combat.dis);
+
+                Game.combat.Update(null);
+            }
         }
         override public void Button4_Click()
         {
+            if (Game.combat.CombatOver)
+            {
 
+            }
+            else
+            {
+                Game.combat.dis += 1;
+
+                Game.text.AddToOPLog("Dis = " + Game.combat.dis);
+                Game.combat.Update(null);
+            }
         }
         override public void Button5_Click()
         {

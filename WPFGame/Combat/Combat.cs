@@ -7,19 +7,23 @@ namespace WPFGame
 {
     class Combat
     {
-        //The Enemy
         public EnemyCharacter enemy;
-        //player damage and hit
-        //public int PlayerDmg;
         public bool playerHit;
         public bool GetPlayerHit() => playerHit;
-        //enemy damage and hit
-        //public int EnemyDmg;
+        public bool playerMoved;
+        public bool playerOutOfRange;
+        public int playerCombatData = 0;
+
         public bool enemyHit;
         public bool GetEnemyHit() => enemyHit;
+        public bool enemyMoved;
+        public bool enemyOutOfRange;
+        public int enemyCombatData = 0;
 
         public bool CombatOver;
         public bool PlayerWon;
+
+        public int dis = 0;
 
         public Combat(EnemyCharacter enemy)
         {
@@ -27,32 +31,54 @@ namespace WPFGame
 
             CombatOver = false;
             PlayerWon = false;
+
+            dis = 2;
         }
 
         public void Update(Attack attack)
         {
-            //if the player hit the enemy
-            if(Game.player.HitTest(enemy.GetSize()))
+            if(Game.player.weapon.Range >= Game.combat.dis)
             {
-                playerHit = true;
-                //Enemy takes damage
-                enemy.TakeDamage(Game.player.GetDamage(attack));
+                if (attack != null)
+                {
+                    if (Game.player.HitTest(enemy.GetSize()))
+                    {
+                        enemy.TakeDamage(Game.player.GetDamage(attack));
+                        playerCombatData = 1;
+                    }
+                    else
+                    {
+                        playerCombatData = 2;
+                    }
+                }
+                else
+                {
+                    playerCombatData = 3;
+                }
             }
             else
             {
-                playerHit = false;
+                playerCombatData = 4;
             }
-            //if the enemy hit the player
-            if(enemy.HitTest(Game.player.GetSize()))
+
+            if(enemy.weapon.Range >= Game.combat.dis)
             {
-                enemyHit = true;
-                //player takes damage
-                Game.player.TakeDamage(enemy.GetDamage(enemy.weapon.Attacks[0]));
+                if (enemy.HitTest(Game.player.GetSize()))
+                {
+                    Game.player.TakeDamage(enemy.GetDamage(enemy.weapon.Attacks[0]));
+                    enemyCombatData = 1;
+                }
+                else
+                {
+                    enemyCombatData = 2;
+                }
             }
             else
             {
-                enemyHit = false;
+                enemyCombatData = 3;
             }
+
+            
 
             PrintStats(enemy.DamageTaken, Game.player.DamageTaken);
 
@@ -66,6 +92,8 @@ namespace WPFGame
                     CombatOver = true;
                     Game.State.ButtonNames[0] = "Back";
                     Game.State.ButtonNames[1] = "";
+                    Game.State.ButtonNames[2] = "";
+                    Game.State.ButtonNames[3] = "";
                 }
                 else
                 {
@@ -76,26 +104,37 @@ namespace WPFGame
         
         private void PrintStats(int playerDmg, int enemyDmg)
         {
-            if (playerHit)
+            switch (playerCombatData)
             {
-                Game.text.AddToOPLog("You attacked the enemy!");
-                Game.text.AddToOPLog("\tDamage: " + playerDmg, Text.PlayerColor);
-            }
-            else
-            {
-                Game.text.AddToOPLog("You attacked the enemy!");
-                Game.text.AddToOPLog("\tMissed");
+                case 1:
+                    Game.text.AddToOPLog("You attacked the enemy!");
+                    Game.text.AddToOPLog("\tDamage: " + playerDmg, Text.PlayerColor);
+                    break;
+                case 2:
+                    Game.text.AddToOPLog("You attacked the enemy!");
+                    Game.text.AddToOPLog("\tMissed");
+                    break;
+                case 3:
+                    Game.text.AddToOPLog("You moved.");
+                    break;
+                case 4:
+                    Game.text.AddToOPLog("You are out of range.");
+                    break;
             }
 
-            if(enemyHit)
+            switch (enemyCombatData)
             {
-                Game.text.AddToOPLog("The Enemy attacked you!");
-                Game.text.AddToOPLog("\tDamage: " + enemyDmg, Text.EnemyColor);
-            }
-            else
-            {
-                Game.text.AddToOPLog("The Enemy attacked you!");
-                Game.text.AddToOPLog("\tMissed");
+                case 1:
+                    Game.text.AddToOPLog("The Enemy attacked you!");
+                    Game.text.AddToOPLog("\tDamage: " + enemyDmg, Text.EnemyColor);
+                    break;
+                case 2:
+                    Game.text.AddToOPLog("The Enemy attacked you!");
+                    Game.text.AddToOPLog("\tMissed");
+                    break;
+                case 3:
+                    Game.text.AddToOPLog("Enemy is out of range.");
+                    break;
             }
         }
     }
