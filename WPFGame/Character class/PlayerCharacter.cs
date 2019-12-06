@@ -27,8 +27,8 @@ namespace WPFGame
             MaxHealth = (strength * 100);
             Health = MaxHealth;
 
-			weapon = (Weapon)Item.GetItem("IronShortSword");
-			armor = (Armor)Item.GetItem("ClothArmor");
+			weapon = (Weapon)Item.GetItem("Bow");//(Weapon)Item.GetItem("IronShortSword");
+            armor = (Armor)Item.GetItem("ClothArmor");
 
             Tag = "Player";
             Name = "Player";

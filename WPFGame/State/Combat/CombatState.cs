@@ -8,7 +8,7 @@ namespace WPFGame
 {
     class CombatState : State
     {
-		public CombatState(EnemyCharacter enemy = null) : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "", "Move F", "Move B")
+		public CombatState(EnemyCharacter enemy = null) : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "", "Move F", " b b  B")
         {
             Game.combat = new Combat(enemy) ?? new Combat(EnemyCharacter.GetRandomEnemy());
             EnemyBoxVis = true;
@@ -59,8 +59,8 @@ namespace WPFGame
             else
             {
                 Game.combat.dis += 1;
-
                 Game.text.AddToOPLog("Dis = " + Game.combat.dis);
+
                 Game.combat.Update(null);
             }
         }

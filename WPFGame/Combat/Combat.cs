@@ -32,14 +32,14 @@ namespace WPFGame
             CombatOver = false;
             PlayerWon = false;
 
-            dis = 2;
+            dis = 5;
         }
 
         public void Update(Attack attack)
         {
-            if(Game.player.weapon.Range >= Game.combat.dis)
+            if (attack != null)
             {
-                if (attack != null)
+                if (Game.player.weapon.Range >= Game.combat.dis)
                 {
                     if (Game.player.HitTest(enemy.GetSize()))
                     {
@@ -53,13 +53,15 @@ namespace WPFGame
                 }
                 else
                 {
-                    playerCombatData = 3;
+                    playerCombatData = 4;
                 }
             }
             else
             {
-                playerCombatData = 4;
+                playerCombatData = 3;
             }
+
+            
 
             if(enemy.weapon.Range >= Game.combat.dis)
             {
@@ -75,6 +77,8 @@ namespace WPFGame
             }
             else
             {
+                Game.combat.dis -= 1;
+                Game.text.AddToOPLog("Dis = " + Game.combat.dis);
                 enemyCombatData = 3;
             }
 
@@ -100,8 +104,7 @@ namespace WPFGame
                     Game.State = new GameOverState();
                 }
             }            
-        }
-        
+        }  
         private void PrintStats(int playerDmg, int enemyDmg)
         {
             switch (playerCombatData)
@@ -133,6 +136,9 @@ namespace WPFGame
                     Game.text.AddToOPLog("\tMissed");
                     break;
                 case 3:
+                    Game.text.AddToOPLog("Enemy Moved.");
+                    break;
+                case 4:
                     Game.text.AddToOPLog("Enemy is out of range.");
                     break;
             }
