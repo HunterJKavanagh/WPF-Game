@@ -25,10 +25,12 @@ namespace WPFGame
         static public Dictionary<string, int> Categorys = new Dictionary<string, int>()
         {
             {"weapon", 0 },
-            {"armor", 1 }
+            {"armor", 1 },
+            {"spell", 2 }
         };
         static private List<string>[] categorizedItems = new List<string>[]
         {
+            new List<string>(),
             new List<string>(),
             new List<string>()
         };
@@ -92,6 +94,12 @@ namespace WPFGame
                         item["attack1"], item["attack2"]);
                 case "armor":
                     return new Armor(item["name"], Convert.ToInt32(item["cost"]), Convert.ToInt32(item["def"]));
+                case "spell":
+                    return new Spell(item["name"],
+                        Convert.ToInt32(item["cost"]),
+                        Convert.ToInt32(item["ap"]),
+                        Convert.ToInt32(item["dmg"]),
+                        Convert.ToInt32(item["range"]));
             }
             return null;
         }

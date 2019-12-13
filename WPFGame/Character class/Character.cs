@@ -25,13 +25,18 @@ namespace WPFGame
         {
             return Size;
         }
-        
+
+        public int stamina;
+        public int mana;
+
+
         public int Strength;
         public int Dexterity;
         public int Intelligence;
         
         public Weapon weapon;
         public Armor armor;
+        public Spell spell;
 
         public CharacterSkills Skills = new CharacterSkills();
         public CharacterDamage CharDmg = new CharacterDamage();
@@ -42,9 +47,19 @@ namespace WPFGame
 		}
 
         //gets the dmage from the attacker
-        public Damage GetDamage(Attack attack)
+        public Damage GetDamage(Attack attack, bool isSpell = false)
         {
-			Damage damage = new Damage((int)(Game.player.weapon.Ap * attack.Ap), (int)(((weapon.Dmg * Skills.GetSkillPercentage(weapon.Type)) + GetInfo().Str) * attack.Dmg), attack.Effect);
+            Damage damage = null;
+
+            if (isSpell)
+            {
+                damage = new Damage((int)(Game.player.spell.Ap), (int)(((spell.Dmg * Skills.GetSkillPercentage(spell.Category)) + GetInfo().Int)));
+            }
+            else
+            {
+                damage = new Damage((int)(Game.player.weapon.Ap * attack.Ap), (int)(((weapon.Dmg * Skills.GetSkillPercentage(weapon.Type)) + GetInfo().Str) * attack.Dmg), attack.Effect);
+            }
+			
 			return damage;
         }
 

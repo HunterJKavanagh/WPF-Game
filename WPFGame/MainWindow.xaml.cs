@@ -154,8 +154,11 @@ namespace WPFGame
 
 			UI_PlayerXP.Content = "Xp: " + Game.player.xp;
 			UI_PlayerGold.Content = "Gold: " + Game.player.Gold;
+            UI_PlayerStamina.Content = "Stamina: " + Game.player.stamina;
+            UI_PlayerMana.Content = "Mana: " + Game.player.mana;
 
-			switch (Game.UIPlayerInfo.EffectList.Count)
+
+            switch (Game.UIPlayerInfo.EffectList.Count)
 			{
 				case 1:
 					UI_PlayerDmgEffect1.Content = Game.UIPlayerInfo.EffectList[0].Name + " " + Game.UIPlayerInfo.EffectList[0].EffectLength;

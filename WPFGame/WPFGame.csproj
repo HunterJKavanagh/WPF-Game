@@ -77,6 +77,7 @@
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Inventory.cs" />
     <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\Spell.cs" />
     <Compile Include="Items\Weapon.cs" />
     <Compile Include="Map\Components\Component.cs" />
     <Compile Include="Map\Components\Dungeon\Dungeon.cs" />

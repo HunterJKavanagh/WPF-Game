@@ -287,6 +287,12 @@
                     <StatusBarItem Margin="5 0">
                         <Label x:Name="UI_PlayerGold" Width="125" Height="30" Content="Gold: 00000" Background="#33FFFF00"/>
                     </StatusBarItem>
+                    <StatusBarItem Margin="5 0">
+                        <Label x:Name="UI_PlayerStamina" Width="125" Height="30" Content="Stamina: 00" Background="#3303FF0E"/>
+                    </StatusBarItem>
+                    <StatusBarItem Margin="5 0">
+                        <Label x:Name="UI_PlayerMana" Width="125" Height="30" Content="Man: 00" Background="#330D37C7"/>
+                    </StatusBarItem>
                 </StatusBar>
             </Grid>
 

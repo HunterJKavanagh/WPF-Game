@@ -35,20 +35,21 @@ namespace WPFGame
             dis = 5;
         }
 
-        public void Update(Attack attack)
+        public void Update(Attack attack, bool isSpell = false)
         {
-            if (attack != null)
+            if (isSpell)
             {
-                if (Game.player.weapon.Range >= Game.combat.dis)
+                if (Game.player.spell.Range >= Game.combat.dis)
                 {
-                    if (Game.player.HitTest(enemy.GetSize()))
+                    if(Game.player.mana > 0)
                     {
-                        enemy.TakeDamage(Game.player.GetDamage(attack));
+                        enemy.TakeDamage(Game.player.GetDamage(null, true));
                         playerCombatData = 1;
+                        Game.player.mana -= 1;
                     }
                     else
                     {
-                        playerCombatData = 2;
+                        playerCombatData = 5;
                     }
                 }
                 else
@@ -58,12 +59,40 @@ namespace WPFGame
             }
             else
             {
-                playerCombatData = 3;
+                if (attack != null)
+                {
+                    if (Game.player.weapon.Range >= Game.combat.dis)
+                    {
+                        if (Game.player.stamina > 0)
+                        {
+                            if (Game.player.HitTest(enemy.GetSize()))
+                            {
+                                enemy.TakeDamage(Game.player.GetDamage(attack));
+                                playerCombatData = 1;
+                                Game.player.stamina -= 1;
+                            }
+                            else
+                            {
+                                playerCombatData = 2;
+                            }
+                        }
+                        else
+                        {
+                            playerCombatData = 6;
+                        }
+                    }
+                    else
+                    {
+                        playerCombatData = 4;
+                    }
+                }
+                else
+                {
+                    playerCombatData = 3;
+                }
             }
 
-            
-
-            if(enemy.weapon.Range >= Game.combat.dis)
+            if (enemy.weapon.Range >= Game.combat.dis)
             {
                 if (enemy.HitTest(Game.player.GetSize()))
                 {
@@ -81,8 +110,6 @@ namespace WPFGame
                 Game.text.AddToOPLog("Dis = " + Game.combat.dis);
                 enemyCombatData = 3;
             }
-
-            
 
             PrintStats(enemy.DamageTaken, Game.player.DamageTaken);
 
@@ -122,6 +149,12 @@ namespace WPFGame
                     break;
                 case 4:
                     Game.text.AddToOPLog("You are out of range.");
+                    break;
+                case 5:
+                    Game.text.AddToOPLog("You are out of mana.");
+                    break;
+                case 6:
+                    Game.text.AddToOPLog("You are out of stamina.");
                     break;
             }
 

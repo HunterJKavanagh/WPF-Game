@@ -86,6 +86,9 @@ namespace WPFGame
                 case "Throwing Weapon":
                     percentage = ((Range["Range"] / 2) + Range["Throwing Weapons"]) / 100;
                     return percentage;
+                case "spell":
+                    percentage = ((Magic["Magic"] / 2) + Magic["Spells"]) / 100;
+                    return percentage;
             }
 
             throw new System.ArgumentException("Skill Type Not Found");

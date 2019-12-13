@@ -17,18 +17,22 @@ namespace WPFGame
         public int Gold = 250;
 
         //player constructor 
-        public PlayerCharacter(int strength, int dexterity, int intelligence, int armorDefense = 5)
+        public PlayerCharacter(int strength, int dexterity, int intelligence, int stamina = 10, int mana = 10)
         {
             this.Strength = strength;
             this.Dexterity = dexterity;
             this.Intelligence = intelligence;
             this.Size = 50;
 
+            this.stamina = stamina;
+            this.mana = mana;
+
             MaxHealth = (strength * 100);
             Health = MaxHealth;
 
 			weapon = (Weapon)Item.GetItem("Bow");//(Weapon)Item.GetItem("IronShortSword");
             armor = (Armor)Item.GetItem("ClothArmor");
+            spell = (Spell)Item.GetItem("FireBolt");
 
             Tag = "Player";
             Name = "Player";

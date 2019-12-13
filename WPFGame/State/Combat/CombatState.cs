@@ -8,7 +8,7 @@ namespace WPFGame
 {
     class CombatState : State
     {
-		public CombatState(EnemyCharacter enemy = null) : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "", "Move F", " b b  B")
+		public CombatState(EnemyCharacter enemy = null) : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "", "Move F", " Move  B", Game.player.spell.Name)
         {
             Game.combat = new Combat(enemy) ?? new Combat(EnemyCharacter.GetRandomEnemy());
             EnemyBoxVis = true;
@@ -66,7 +66,14 @@ namespace WPFGame
         }
         override public void Button5_Click()
         {
+            if (Game.combat.CombatOver)
+            {
 
+            }
+            else
+            {
+                Game.combat.Update(null, true);
+            }
         }
         override public void Button6_Click()
         {
