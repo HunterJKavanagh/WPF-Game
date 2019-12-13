@@ -181,7 +181,16 @@ namespace WPFGame
 			UI_PlayerSkillSpears.Content = "Spears: " + Game.player.Skills.Melee["Spears"];
 			UI_PlayerSkillSwords.Content = "Swords: " + Game.player.Skills.Melee["Swords"];
 			UI_PlayerSkillUnarmed.Content = "Unarmed: " + Game.player.Skills.Melee["Unarmed"];
-		}
+
+            UI_PlayerSkillRange.Content = "Range: " + Game.player.Skills.Range["Range"];
+            UI_PlayerSkillBows.Content = "Bows: " + Game.player.Skills.Range["Bows"];
+            UI_PlayerSkillCrossbows.Content = "Crossbows: " + Game.player.Skills.Range["Crossbows"];
+            UI_PlayerSkillJavalines.Content = "Javalines: " + Game.player.Skills.Range["Javalines"];
+            UI_PlayerSkillThrowingWeapons.Content = "Throwing Weapons: " + Game.player.Skills.Range["Throwing Weapons"];
+
+            UI_PlayerSkillMagic.Content = "Magic: " + Game.player.Skills.Magic["Magic"];
+            UI_PlayerSkillSpells.Content = "Spells: " + Game.player.Skills.Magic["Spells"];
+        }
 		public void UpDateEnemeyBox()
 		{
 			UI_EnemyName.Content = "Name: " + Game.UIEnemyInfo.Name;
@@ -302,6 +311,15 @@ namespace WPFGame
 			UI_CC_SkillSpears.Content = "Spears: " + Game.player.Skills.Melee["Spears"];
 			UI_CC_SkillSwords.Content = "Swords: " + Game.player.Skills.Melee["Swords"];
 			UI_CC_SkillUnarmed.Content = "Unarmed: " + Game.player.Skills.Melee["Unarmed"];
+
+            UI_CC_SkillRange.Content = "Range: " + Game.player.Skills.Range["Range"];
+            UI_CC_SkillBows.Content = "Bows: " + Game.player.Skills.Range["Bows"];
+            UI_CC_SkillCrossbows.Content = "Crossbows: " + Game.player.Skills.Range["Crossbows"];
+            UI_CC_SkillJavalines.Content = "Javalines: " + Game.player.Skills.Range["Javalines"];
+            UI_CC_SkillThrowingWeapons.Content = "Throwing Weapons: " + Game.player.Skills.Range["Throwing Weapons"];
+
+            UI_CC_SkillMagic.Content = "Magic: " + Game.player.Skills.Magic["Magic"];
+            UI_CC_SkillSpells.Content = "Spells: " + Game.player.Skills.Magic["Spells"];
 
             UI_CC_Str.Content = "Str: " + Game.player.Strength;
             UI_CC_Dex.Content = "Dex: " + Game.player.Dexterity;
@@ -438,7 +456,7 @@ namespace WPFGame
             
 			UpDateCCUI();
 		}
-		private void UI_CC_MeleeMiinus_Click(object sender, RoutedEventArgs e)
+		private void UI_CC_MeleeMinus_Click(object sender, RoutedEventArgs e)
 		{
             if (Keyboard.IsKeyDown(Key.LeftCtrl))
             {
@@ -543,8 +561,8 @@ namespace WPFGame
             
 			UpDateCCUI();
 		}
-		private void UI_CC_UnarmedMinus_Click(object sender, RoutedEventArgs e)
-		{
+        private void UI_CC_UnarmedMinus_Click(object sender, RoutedEventArgs e)
+        {
             if (Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 if (Game.player.Skills.Melee["Unarmed"] > 29)
@@ -561,9 +579,310 @@ namespace WPFGame
                     Game.player.Skills.Melee["Unarmed"] -= 1;
                 }
             }
-            
-			UpDateCCUI();
-		}
+
+            UpDateCCUI();
+        }
+
+        // Range
+        private void UI_CC_RangePlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.xp > 4 && Game.player.Skills.Range["Range"] < 96)
+                {
+                    Game.player.xp -= 5;
+                    Game.player.Skills.Range["Range"] += 5;
+                }
+            }
+            else
+            {
+                if (Game.player.xp > 0 && Game.player.Skills.Range["Range"] < 100)
+                {
+                    Game.player.xp -= 1;
+                    Game.player.Skills.Range["Range"] += 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_BowsPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.xp > 4 && Game.player.Skills.Range["Bows"] < 96)
+                {
+                    Game.player.xp -= 5;
+                    Game.player.Skills.Range["Bows"] += 5;
+                }
+            }
+            else
+            {
+                if (Game.player.xp > 0 && Game.player.Skills.Range["Bows"] < 100)
+                {
+                    Game.player.xp -= 1;
+                    Game.player.Skills.Range["Bows"] += 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_CrossbowsPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.xp > 4 && Game.player.Skills.Range["Crossbows"] < 96)
+                {
+                    Game.player.xp -= 5;
+                    Game.player.Skills.Range["Crossbows"] += 5;
+                }
+            }
+            else
+            {
+                if (Game.player.xp > 0 && Game.player.Skills.Range["Crossbows"] < 100)
+                {
+                    Game.player.xp -= 1;
+                    Game.player.Skills.Range["Crossbows"] += 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_JavalinesPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.xp > 4 && Game.player.Skills.Range["Javalines"] < 96)
+                {
+                    Game.player.xp -= 5;
+                    Game.player.Skills.Range["Javalines"] += 5;
+                }
+            }
+            else
+            {
+                if (Game.player.xp > 0 && Game.player.Skills.Range["Javalines"] < 100)
+                {
+                    Game.player.xp -= 1;
+                    Game.player.Skills.Range["Javalines"] += 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_ThrowingWeaponsPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.xp > 4 && Game.player.Skills.Range["Throwing Weapons"] < 96)
+                {
+                    Game.player.xp -= 5;
+                    Game.player.Skills.Range["Throwing Weapons"] += 5;
+                }
+            }
+            else
+            {
+                if (Game.player.xp > 0 && Game.player.Skills.Range["Throwing Weapons"] < 100)
+                {
+                    Game.player.xp -= 1;
+                    Game.player.Skills.Range["Throwing Weapons"] += 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_RangeMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.Skills.Range["Range"] > 29)
+                {
+                    Game.player.xp += 5;
+                    Game.player.Skills.Range["Range"] -= 5;
+                }
+            }
+            else
+            {
+                if (Game.player.Skills.Range["Range"] > 25)
+                {
+                    Game.player.xp += 1;
+                    Game.player.Skills.Range["Range"] -= 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_BowsMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.Skills.Range["Bows"] > 29)
+                {
+                    Game.player.xp += 5;
+                    Game.player.Skills.Range["Bows"] -= 5;
+                }
+            }
+            else
+            {
+                if (Game.player.Skills.Range["Bows"] > 25)
+                {
+                    Game.player.xp += 1;
+                    Game.player.Skills.Range["Bows"] -= 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_CrossbowsMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.Skills.Range["Crossbows"] > 29)
+                {
+                    Game.player.xp += 5;
+                    Game.player.Skills.Range["Crossbows"] -= 5;
+                }
+            }
+            else
+            {
+                if (Game.player.Skills.Range["Crossbows"] > 25)
+                {
+                    Game.player.xp += 1;
+                    Game.player.Skills.Range["Crossbows"] -= 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_JavalinesMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.Skills.Range["Javalines"] > 29)
+                {
+                    Game.player.xp += 5;
+                    Game.player.Skills.Range["Javalines"] -= 5;
+                }
+            }
+            else
+            {
+                if (Game.player.Skills.Range["Javalines"] > 25)
+                {
+                    Game.player.xp += 1;
+                    Game.player.Skills.Range["Javalines"] -= 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_ThrowingWeaponsMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.Skills.Range["Throwing Weapons"] > 29)
+                {
+                    Game.player.xp += 5;
+                    Game.player.Skills.Range["Throwing Weapons"] -= 5;
+                }
+            }
+            else
+            {
+                if (Game.player.Skills.Range["Throwing Weapons"] > 25)
+                {
+                    Game.player.xp += 1;
+                    Game.player.Skills.Range["Throwing Weapons"] -= 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+
+        // Magic
+        private void UI_CC_MagicPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.xp > 4 && Game.player.Skills.Magic["Magic"] < 96)
+                {
+                    Game.player.xp -= 5;
+                    Game.player.Skills.Magic["Magic"] += 5;
+                }
+            }
+            else
+            {
+                if (Game.player.xp > 0 && Game.player.Skills.Magic["Magic"] < 100)
+                {
+                    Game.player.xp -= 1;
+                    Game.player.Skills.Magic["Magic"] += 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_SpellsPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.xp > 4 && Game.player.Skills.Magic["Spells"] < 96)
+                {
+                    Game.player.xp -= 5;
+                    Game.player.Skills.Magic["Spells"] += 5;
+                }
+            }
+            else
+            {
+                if (Game.player.xp > 0 && Game.player.Skills.Magic["Spells"] < 100)
+                {
+                    Game.player.xp -= 1;
+                    Game.player.Skills.Magic["Spells"] += 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_MagicMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.Skills.Magic["Magic"] > 29)
+                {
+                    Game.player.xp += 5;
+                    Game.player.Skills.Magic["Magic"] -= 5;
+                }
+            }
+            else
+            {
+                if (Game.player.Skills.Magic["Magic"] > 25)
+                {
+                    Game.player.xp += 1;
+                    Game.player.Skills.Magic["Magic"] -= 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+        private void UI_CC_SpellsMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (Game.player.Skills.Magic["Spells"] > 29)
+                {
+                    Game.player.xp += 5;
+                    Game.player.Skills.Magic["Spells"] -= 5;
+                }
+            }
+            else
+            {
+                if (Game.player.Skills.Magic["Spells"] > 25)
+                {
+                    Game.player.xp += 1;
+                    Game.player.Skills.Magic["Spells"] -= 1;
+                }
+            }
+
+            UpDateCCUI();
+        }
+
+
+        //  SDI
         private void UI_CC_StrPlus_Click(object sender, RoutedEventArgs e)
         {
             if (Game.player.attribute_points > 0)

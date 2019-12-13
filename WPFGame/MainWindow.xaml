@@ -18,7 +18,7 @@
             <Setter Property="FontSize" Value="16"/>
         </Style>
     </Window.Resources>
-    <Viewbox>
+    <Viewbox x:Name="MainView">
         <Grid Background="#FF14191E">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="1620"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Name="Grid0_0" Grid.Row="0" Grid.Column="0">
+            <Grid Name="Grid0_0" Grid.Row="0" Grid.Column="0" d:IsHidden="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -43,7 +43,7 @@
                 <Button Grid.Column="2" Name="UI_LoadButton" Content="Load" Click="UI_LoadButton_Click"/>
             </Grid>
 
-            <Grid Name="Grid0_1" Grid.Row="0" Grid.Column="1">
+            <Grid Name="Grid0_1" Grid.Row="0" Grid.Column="1" d:IsHidden="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -53,7 +53,7 @@
                 <Button Grid.Column="1" Content="X" FontSize="20" FontWeight="Bold" Width="40" Height="40" Click="Button_Click"/>
             </Grid>
 
-            <Grid Name="Grid1_0" Grid.Row="1" Grid.Column="0">
+            <Grid Name="Grid1_0" Grid.Row="1" Grid.Column="0" d:IsHidden="True">
                 <TabControl Height="905" Margin="0 10">
                     <TabItem Header="Player" Height="25">
                         <Border Padding="5 5">
@@ -122,13 +122,30 @@
                     <TabItem Header="Skills">
                         <StackPanel>
                             <Label Name="UI_PlayerSkillMelee" Content="Melee" Height="40" Margin="10"/>
-                            <Border Padding="10" Background="Transparent">
+                            <Border Padding="10"  BorderBrush="{StaticResource BackgroundNormal}" BorderThickness="2" Margin="10,0">
                                 <StackPanel>
-                                    <Label Name="UI_PlayerSkillAxes" Content="Axes" Height="40" Margin="5"/>
-                                    <Label Name="UI_PlayerSkillDaggers" Content="Daggers" Height="40" Margin="5"/>
-                                    <Label Name="UI_PlayerSkillSpears" Content="Spears" Height="40" Margin="5"/>
-                                    <Label Name="UI_PlayerSkillSwords" Content="Swords" Height="40" Margin="5"/>
-                                    <Label Name="UI_PlayerSkillUnarmed" Content="Unarmed" Height="40" Margin="5"/>
+                                    <Label Name="UI_PlayerSkillAxes" Content="Axes" Height="40" Margin="0,5"/>
+                                    <Label Name="UI_PlayerSkillDaggers" Content="Daggers" Height="40" Margin="0,5"/>
+                                    <Label Name="UI_PlayerSkillSpears" Content="Spears" Height="40" Margin="0,5"/>
+                                    <Label Name="UI_PlayerSkillSwords" Content="Swords" Height="40" Margin="0,5"/>
+                                    <Label Name="UI_PlayerSkillUnarmed" Content="Unarmed" Height="40" Margin="0,5"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Label Name="UI_PlayerSkillRange" Content="Melee" Height="40" Margin="10,25,10,10"/>
+                            <Border Padding="10" BorderBrush="{StaticResource BackgroundNormal}" BorderThickness="2" Margin="10,0">
+                                <StackPanel>
+                                    <Label Name="UI_PlayerSkillBows" Content="Bows" Height="40" Margin="0,5"/>
+                                    <Label Name="UI_PlayerSkillCrossbows" Content="Crossbows" Height="40" Margin="0,5"/>
+                                    <Label Name="UI_PlayerSkillJavalines" Content="Javalines" Height="40" Margin="0,5"/>
+                                    <Label Name="UI_PlayerSkillThrowingWeapons" Content="Throwing Weapons" Height="40" Margin="0,5"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Label Name="UI_PlayerSkillMagic" Content="Magic" Height="40" Margin="10,25,10,10"/>
+                            <Border Padding="10" BorderBrush="{StaticResource BackgroundNormal}" BorderThickness="2" Margin="10,0">
+                                <StackPanel>
+                                    <Label Name="UI_PlayerSkillSpells" Content="Spells" Height="40" Margin="0"/>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
@@ -136,7 +153,7 @@
                 </TabControl>
             </Grid>
 
-            <Grid Name="Grid1_1" Grid.Row="1" Grid.Column="1">
+            <Grid Name="Grid1_1" Grid.Row="1" Grid.Column="1" d:IsHidden="True">
                 <Border Width="Auto" Height="Auto" Margin="10" Background="#7F00050A">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -216,13 +233,13 @@
                 </Border>
             </Grid>
 
-            <Grid Name="Grid2_0" Grid.Row="2" Grid.Column="0">
+            <Grid Name="Grid2_0" Grid.Row="2" Grid.Column="0" d:IsHidden="True">
                 <TextBlock Padding="2" Name="HelpBox" Margin="10 0 10 10" TextWrapping="Wrap" FontSize="15">
                 * Map lets you move to  a new location * Inventory lets you see and equip your items * Skill lets you see a level your skills
                 </TextBlock>
             </Grid>
 
-            <Grid Name="Grid2_1" Grid.Row="2" Grid.Column="1">
+            <Grid Name="Grid2_1" Grid.Row="2" Grid.Column="1" d:IsHidden="True">
                 <Border Width="Auto" Height="Auto" Margin="10 0 10 10" Grid.Row="1" Background="{StaticResource BackgroundNormal}">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -269,7 +286,7 @@
                 </Border>
             </Grid>
 
-            <Grid Name="Grid3_0" Grid.Row="3" Grid.Column="0">
+            <Grid Name="Grid3_0" Grid.Row="3" Grid.Column="0" d:IsHidden="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -279,7 +296,7 @@
                 <ProgressBar x:Name="UI_PlayerHpBar" Value="75" Grid.Column="1" Foreground="#3FFF3434" Background="#7F000000" BorderBrush="{x:Null}"/>
             </Grid>
 
-            <Grid Name="Grid3_1" Grid.Row="3" Grid.Column="1">
+            <Grid Name="Grid3_1" Grid.Row="3" Grid.Column="1" d:IsHidden="True">
                 <StatusBar Width="Auto" Height="Auto">
                     <StatusBarItem Margin="5 0">
                         <Label x:Name="UI_PlayerXP" Width="125" Height="30" Content="XP: 00000" Background="#3300C5FF"/>
@@ -320,14 +337,25 @@
                             </Grid>
                         </Border>
                         <Border Margin="10" Padding="10" BorderThickness="5" BorderBrush="{StaticResource BackgroundHighligh}">
-                            <StackPanel>
-                                <Label Name="UI_CC_SkillMelee" Content="Melee" Height="30" Margin="5 5"/>
-                                <Label Name="UI_CC_SkillAxes" Content="Axes" Height="30" Margin="15 5"/>
-                                <Label Name="UI_CC_SkillDaggers" Content="Daggers" Height="30" Margin="15 5"/>
-                                <Label Name="UI_CC_SkillSpears" Content="Spears" Height="30" Margin="15 5"/>
-                                <Label Name="UI_CC_SkillSwords" Content="Swords" Height="30" Margin="15 5"/>
-                                <Label Name="UI_CC_SkillUnarmed" Content="Unarmed" Height="30" Margin="15 5"/>
-                            </StackPanel>
+                            <ScrollViewer Height="275">
+                                <StackPanel>
+                                    <Label Name="UI_CC_SkillMelee" Content="Melee" Height="30" Margin="5 5"/>
+                                    <Label Name="UI_CC_SkillAxes" Content="Axes" Height="30" Margin="15 5"/>
+                                    <Label Name="UI_CC_SkillDaggers" Content="Daggers" Height="30" Margin="15 5"/>
+                                    <Label Name="UI_CC_SkillSpears" Content="Spears" Height="30" Margin="15 5"/>
+                                    <Label Name="UI_CC_SkillSwords" Content="Swords" Height="30" Margin="15 5"/>
+                                    <Label Name="UI_CC_SkillUnarmed" Content="Unarmed" Height="30" Margin="15 5"/>
+
+                                    <Label Name="UI_CC_SkillRange" Content="Range" Height="30" Margin="5 5"/>
+                                    <Label Name="UI_CC_SkillBows" Content="Bows" Height="30" Margin="15 5"/>
+                                    <Label Name="UI_CC_SkillCrossbows" Content="Crossbows" Height="30" Margin="15 5"/>
+                                    <Label Name="UI_CC_SkillJavalines" Content="Javalines" Height="30" Margin="15 5"/>
+                                    <Label Name="UI_CC_SkillThrowingWeapons" Content="Throwing Weapons" Height="30" Margin="15 5"/>
+
+                                    <Label Name="UI_CC_SkillMagic" Content="Magic" Height="30" Margin="5 5"/>
+                                    <Label Name="UI_CC_SkillSpells" Content="Spells" Height="30" Margin="15 5"/>
+                                </StackPanel>
+                            </ScrollViewer>
                         </Border>
                     </StackPanel>
                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
@@ -355,35 +383,64 @@
                             </Grid>
                         </Border>
                         <Border Margin="10" Padding="10" BorderThickness="5" BorderBrush="{StaticResource BackgroundHighligh}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
+                            
+                            <ScrollViewer Height="275">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Button Content="Melee +" Name="UI_CC_MeleePlus" Grid.Row="0" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_MeleePlus_Click"/>
-                                <Button Content="Axes +" Name="UI_CC_AxesPlus" Grid.Row="1" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_AxesPlus_Click"/>
-                                <Button Content="Daggers +" Name="UI_CC_DaggersPlus" Grid.Row="2" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_DaggersPlus_Click"/>
-                                <Button Content="Spears +" Name="UI_CC_SpearsPlus" Grid.Row="3" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_SpearsPlus_Click"/>
-                                <Button Content="Swords +" Name="UI_CC_SwordsPlus" Grid.Row="4" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_SwordsPlus_Click"/>
-                                <Button Content="Unarmed +" Name="UI_CC_UnarmedPlus" Grid.Row="5" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_UnarmedPlus_Click"/>
+                                    <Button Content="Melee +" Name="UI_CC_MeleePlus" Grid.Row="0" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_MeleePlus_Click"/>
+                                    <Button Content="Axes +" Name="UI_CC_AxesPlus" Grid.Row="1" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_AxesPlus_Click"/>
+                                    <Button Content="Daggers +" Name="UI_CC_DaggersPlus" Grid.Row="2" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_DaggersPlus_Click"/>
+                                    <Button Content="Spears +" Name="UI_CC_SpearsPlus" Grid.Row="3" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_SpearsPlus_Click"/>
+                                    <Button Content="Swords +" Name="UI_CC_SwordsPlus" Grid.Row="4" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_SwordsPlus_Click"/>
+                                    <Button Content="Unarmed +" Name="UI_CC_UnarmedPlus" Grid.Row="5" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_UnarmedPlus_Click"/>
 
-                                <Button Content="Melee -" Name="UI_CC_MeleeMinus" Grid.Row="0" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_MeleeMiinus_Click"/>
-                                <Button Content="Axes -" Name="UI_CC_AxesMinus" Grid.Row="1" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_AxesMinus_Click"/>
-                                <Button Content="Daggers -" Name="UI_CC_DaggersMinus" Grid.Row="2" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_DaggersMinus_Click"/>
-                                <Button Content="Spears -" Name="UI_CC_SpearsMinus" Grid.Row="3" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_SpearsMinus_Click"/>
-                                <Button Content="Swords -" Name="UI_CC_SwordsMinus" Grid.Row="4" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_SwordsMinus_Click"/>
-                                <Button Content="Unarmed -" Name="UI_CC_UnarmedMinus" Grid.Row="5" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_UnarmedMinus_Click"/>
+                                    <Button Content="Melee -" Name="UI_CC_MeleeMinus" Grid.Row="0" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_MeleeMinus_Click"/>
+                                    <Button Content="Axes -" Name="UI_CC_AxesMinus" Grid.Row="1" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_AxesMinus_Click"/>
+                                    <Button Content="Daggers -" Name="UI_CC_DaggersMinus" Grid.Row="2" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_DaggersMinus_Click"/>
+                                    <Button Content="Spears -" Name="UI_CC_SpearsMinus" Grid.Row="3" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_SpearsMinus_Click"/>
+                                    <Button Content="Swords -" Name="UI_CC_SwordsMinus" Grid.Row="4" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_SwordsMinus_Click"/>
+                                    <Button Content="Unarmed -" Name="UI_CC_UnarmedMinus" Grid.Row="5" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_UnarmedMinus_Click"/>
 
-                            </Grid>
+
+                                    <Button Content="Range +" Name="UI_CC_RangePlus" Grid.Row="6" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_RangePlus_Click"/>
+                                    <Button Content="Bows +" Name="UI_CC_BowsPlus" Grid.Row="7" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_BowsPlus_Click"/>
+                                    <Button Content="Crossbows +" Name="UI_CC_CrossbowsPlus" Grid.Row="8" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_CrossbowsPlus_Click"/>
+                                    <Button Content="Javalines +" Name="UI_CC_JavalinesPlus" Grid.Row="9" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_JavalinesPlus_Click"/>
+                                    <Button Content="TW +" Name="UI_CC_ThrowingWeaponsPlus" Grid.Row="10" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_ThrowingWeaponsPlus_Click"/>
+
+                                    <Button Content="Range -" Name="UI_CC_RangeMinus" Grid.Row="6" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_RangeMinus_Click"/>
+                                    <Button Content="Bows -" Name="UI_CC_BowsMinus" Grid.Row="7" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_BowsMinus_Click"/>
+                                    <Button Content="Crossbows -" Name="UI_CC_CrossbowssMinus" Grid.Row="8" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_CrossbowsMinus_Click"/>
+                                    <Button Content="Javalines -" Name="UI_CC_JavalinesMinus" Grid.Row="9" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_JavalinesMinus_Click"/>
+                                    <Button Content="TW -" Name="UI_CC_ThrowingWeaponsMinus" Grid.Row="10" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_ThrowingWeaponsMinus_Click"/>
+
+
+                                    <Button Content="Magic +" Name="UI_CC_MagicPlus" Grid.Row="11" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_MagicPlus_Click"/>
+                                    <Button Content="Spells +" Name="UI_CC_SpellsPlus" Grid.Row="12" Grid.Column="0" Height="30" Width="150" Margin="5" Click="UI_CC_SpellsPlus_Click"/>
+
+                                    <Button Content="Magic -" Name="UI_CC_MagicMinus" Grid.Row="11" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_MagicMinus_Click"/>
+                                    <Button Content="Spells -" Name="UI_CC_SpellsMinus" Grid.Row="12" Grid.Column="1" Height="30" Width="150" Margin="5" Click="UI_CC_SpellsMinus_Click"/>
+                                </Grid>
+                            </ScrollViewer>
                         </Border>
                     </StackPanel>
                     <Button Grid.Column="3" Margin="30 0" Name="UI_CC_CreatCharacterButton" Content="Create Character" Click="UI_CC_CreatCharacterButton_Click" IsDefault="True"/>
