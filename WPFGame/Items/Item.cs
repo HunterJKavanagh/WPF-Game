@@ -26,10 +26,12 @@ namespace WPFGame
         {
             {"weapon", 0 },
             {"armor", 1 },
-            {"spell", 2 }
+            {"spell", 2 },
+            {"shield", 3 }
         };
         static private List<string>[] categorizedItems = new List<string>[]
         {
+            new List<string>(),
             new List<string>(),
             new List<string>(),
             new List<string>()
@@ -100,6 +102,8 @@ namespace WPFGame
                         Convert.ToInt32(item["ap"]),
                         Convert.ToInt32(item["dmg"]),
                         Convert.ToInt32(item["range"]));
+                case "shield":
+                    return new Shield(item["name"], Convert.ToInt32(item["cost"]), Convert.ToInt32(item["def"]));
             }
             return null;
         }

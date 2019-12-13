@@ -33,6 +33,7 @@ namespace WPFGame
 			weapon = (Weapon)Item.GetItem("Bow");//(Weapon)Item.GetItem("IronShortSword");
             armor = (Armor)Item.GetItem("ClothArmor");
             spell = (Spell)Item.GetItem("FireBolt");
+            shield = (Shield)Item.GetItem("WoodShield");
 
             Tag = "Player";
             Name = "Player";

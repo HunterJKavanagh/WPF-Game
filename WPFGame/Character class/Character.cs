@@ -37,6 +37,7 @@ namespace WPFGame
         public Weapon weapon;
         public Armor armor;
         public Spell spell;
+        public Shield shield;
 
         public CharacterSkills Skills = new CharacterSkills();
         public CharacterDamage CharDmg = new CharacterDamage();
@@ -69,6 +70,12 @@ namespace WPFGame
             CharDmg.AddDamage(damage.effect);
             int def = armor.Def;
 
+            if(shield != null)
+            {
+                def += shield.Def;
+            }
+            
+
             if(def > damage.Ap && damage.Dmg > (def - damage.Ap))
             {
                 DamageTaken = damage.Dmg - (def - damage.Ap);
@@ -100,7 +107,13 @@ namespace WPFGame
         {
 			Weapon weapon = this.weapon ?? (Weapon)Item.GetItem("IronSword");
 			Armor armor = this.armor ?? (Armor)Item.GetItem("ClothArmor");
-            return new UICharacterInfo(Name, weapon.Name, armor.Name, CharDmg.EffectList, Health, MaxHealth, Strength, Dexterity, Intelligence, armor.Def, weapon.Dmg);
+            int def = armor.Def;
+            if (shield != null)
+            {
+                def += shield.Def;
+            }
+
+            return new UICharacterInfo(Name, weapon.Name, armor.Name, CharDmg.EffectList, Health, MaxHealth, Strength, Dexterity, Intelligence, def, weapon.Dmg);
         }
     }
 }
