@@ -8,7 +8,7 @@ namespace WPFGame
 {
     public class Inventory
     {
-        private List<List<string>> inventoryList = new List<List<string>>();       
+        public List<List<string>> inventoryList = new List<List<string>>();       
 
 		public bool IsPlayerInv;
 

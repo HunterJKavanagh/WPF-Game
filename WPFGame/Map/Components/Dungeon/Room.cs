@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-	class Room
+    public class Room
 	{
 		public EnemyCharacter Enemy;
 
@@ -16,5 +16,6 @@ namespace WPFGame
 		{
 			Enemy = enemy;
 		}
+        public Room() { }
 	}
 }

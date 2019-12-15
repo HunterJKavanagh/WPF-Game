@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Shop : Component
+    public class Shop : Component
     {
         public Inventory inventory;
 
@@ -27,5 +27,6 @@ namespace WPFGame
 
 			this.inventory = Testinventory;
 		}
+        public Shop() { }
     }    
 }

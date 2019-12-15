@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+
 
 namespace WPFGame
 {
+    [XmlInclude(typeof(Dungeon))]
+    [XmlInclude(typeof(Shop))]
     public class Component
     {
         public string Name;

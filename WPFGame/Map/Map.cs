@@ -2,7 +2,7 @@
 {
     public class Map
     {
-        private Location[] locations;
+        public Location[] locations;
 
         public Location[,] GetLocations()
         {
@@ -133,7 +133,7 @@
                     }
                     else
                     {
-                        loc.Component = new Dungeon();
+                        loc.Component = new Dungeon("Dungeon");
                     }
 
                     SetLocations(loc, IX, IY);

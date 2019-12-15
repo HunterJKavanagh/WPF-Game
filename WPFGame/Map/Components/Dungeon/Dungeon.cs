@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-	class Dungeon : Component
+	public class Dungeon : Component
 	{
-		private Room[] rooms;
+        public Room[] rooms;
 
-		private int size;
+        public int size;
 		public int GetSize()
 		{
 			return size;
@@ -46,6 +46,7 @@ namespace WPFGame
 					rooms[i] = new Room(EnemyCharacter.GetEnemy(EnemyCharacter.GetRandomEnemyName()));
 				}
 			}
-		}        
+		}
+        public Dungeon() { }
     }
 }
