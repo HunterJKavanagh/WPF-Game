@@ -11,29 +11,34 @@ namespace WPFGame
 
         //Player XP
 		static public int StartXp = 75;
-        public int attribute_points = 10;
+        public int attribute_points = 5;
         public int xp;
         //player gold
-        public int Gold = 250;
+        public int Gold = 2500;
 
         //player constructor 
-        public PlayerCharacter(int strength, int dexterity, int intelligence, int stamina = 10, int mana = 10)
+        public PlayerCharacter(int strength, int dexterity, int intelligence)
         {
             this.Strength = strength;
             this.Dexterity = dexterity;
             this.Intelligence = intelligence;
             this.Size = 50;
 
-            this.stamina = stamina;
-            this.mana = mana;
+            this.stamina = strength * 2;
+            this.mana = intelligence;
 
             MaxHealth = (strength * 100);
             Health = MaxHealth;
 
-			weapon = (Weapon)Item.GetItem("Bow");//(Weapon)Item.GetItem("IronShortSword");
+			weapon = (Weapon)Item.GetItem("DullIronShortSword");
             armor = (Armor)Item.GetItem("ClothArmor");
             spell = (Spell)Item.GetItem("FireBolt");
-            shield = (Shield)Item.GetItem("WoodShield");
+            shield =(Shield)Item.GetItem("WoodShield");
+
+            inventory.AddItem("DullIronShortSword");
+            inventory.AddItem("ClothArmor");
+            inventory.AddItem("FireBolt");
+            inventory.AddItem("WoodShield");
 
             Tag = "Player";
             Name = "Player";

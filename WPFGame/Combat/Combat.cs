@@ -25,6 +25,8 @@ namespace WPFGame
 
         public int dis = 0;
 
+        public int round = 0;
+
         public Combat(EnemyCharacter enemy)
         {
             this.enemy = enemy;
@@ -37,15 +39,22 @@ namespace WPFGame
 
         public void Update(Attack attack, bool isSpell = false)
         {
+            round += 1;
+
+            if(round % 2 == 0)
+            {
+                Game.player.stamina += 1;
+            }
+
             if (isSpell)
             {
                 if (Game.player.spell.Range >= Game.combat.dis)
                 {
-                    if(Game.player.mana > 0)
+                    if(Game.player.mana - Game.player.spell.Mana >= 0)
                     {
                         enemy.TakeDamage(Game.player.GetDamage(null, true));
                         playerCombatData = 1;
-                        Game.player.mana -= 1;
+                        Game.player.mana -= Game.player.spell.Mana;
                     }
                     else
                     {
@@ -63,13 +72,13 @@ namespace WPFGame
                 {
                     if (Game.player.weapon.Range >= Game.combat.dis)
                     {
-                        if (Game.player.stamina > 0)
+                        if (Game.player.stamina - Game.player.weapon.Stamina  >= 0)
                         {
                             if (Game.player.HitTest(enemy.GetSize()))
                             {
                                 enemy.TakeDamage(Game.player.GetDamage(attack));
                                 playerCombatData = 1;
-                                Game.player.stamina -= 1;
+                                Game.player.stamina -= Game.player.weapon.Stamina;
                             }
                             else
                             {
@@ -119,12 +128,15 @@ namespace WPFGame
                 {
                     Game.player.xp += 15;
                     Game.player.Gold += 50;
+                    Game.player.stamina = Game.player.Strength * 2;
+                    Game.player.mana = Game.player.Intelligence;
 
                     CombatOver = true;
                     Game.State.ButtonNames[0] = "Back";
                     Game.State.ButtonNames[1] = "";
                     Game.State.ButtonNames[2] = "";
                     Game.State.ButtonNames[3] = "";
+                    Game.State.ButtonNames[4] = "";
                 }
                 else
                 {

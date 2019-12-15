@@ -11,14 +11,16 @@ namespace WPFGame
         public int Ap;
         public int Dmg;
         public int Range;
+        public int Mana;
 
-        public Spell(string Name, int Cost, int Ap, int Dmg, int Range) : base(Name, Cost)
+        public Spell(string Name, int Cost, int Ap, int Dmg, int Range, int Mana) : base(Name, Cost)
         {
             Category = "spell";
 
             this.Ap = Ap;
             this.Dmg = Dmg;
             this.Range = Range;
+            this.Mana = Mana;
         }
     }
 }

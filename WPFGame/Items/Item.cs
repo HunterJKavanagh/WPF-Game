@@ -93,7 +93,7 @@ namespace WPFGame
                         Convert.ToInt32(item["ap"]),
                         Convert.ToInt32(item["dmg"]),
                         Convert.ToInt32(item["range"]),
-                        item["attack1"], item["attack2"]);
+                        item["attack1"], item["attack2"], Convert.ToInt32(item["stamina"]));
                 case "armor":
                     return new Armor(item["name"], Convert.ToInt32(item["cost"]), Convert.ToInt32(item["def"]));
                 case "spell":
@@ -101,7 +101,8 @@ namespace WPFGame
                         Convert.ToInt32(item["cost"]),
                         Convert.ToInt32(item["ap"]),
                         Convert.ToInt32(item["dmg"]),
-                        Convert.ToInt32(item["range"]));
+                        Convert.ToInt32(item["range"]),
+                        Convert.ToInt32(item["mana"]));
                 case "shield":
                     return new Shield(item["name"], Convert.ToInt32(item["cost"]), Convert.ToInt32(item["def"]));
             }
@@ -122,7 +123,36 @@ namespace WPFGame
 
 		static public string GetRandomItemName()
 		{
-			return ItemFileNames[Game.GetRandom().Next(ItemFileNames.Count())];
+            string random_name = "";
+            switch (Game.GetRandom().Next(6))
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    do
+                    {
+                        random_name = ItemFileNames[Game.GetRandom().Next(ItemFileNames.Count())];
+                    }
+                    while (Item.GetItem(random_name).Category != "weapon");
+                    break;
+                case 4:
+                    do
+                    {
+                        random_name = ItemFileNames[Game.GetRandom().Next(ItemFileNames.Count())];
+                    }
+                    while (Item.GetItem(random_name).Category != "armor");
+                    break;
+                case 5:
+                    do
+                    {
+                        random_name = ItemFileNames[Game.GetRandom().Next(ItemFileNames.Count())];
+                    }
+                    while (Item.GetItem(random_name).Category != "spell");
+                    break;
+            }
+
+			return random_name;
 		}
     }
 }

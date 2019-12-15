@@ -8,7 +8,7 @@ namespace WPFGame
     class EnemyCharacter : Character
     {
         //Enemy constructor
-        public EnemyCharacter(string Name, int Strength, int Dexterity, int Intelligence, int Size, string weapon, string armor)
+        public EnemyCharacter(string Name, int Strength, int Dexterity, int Intelligence, int Size, string weapon, string armor, string shield)
         {
             this.Strength = Strength;
             this.Dexterity = Dexterity;
@@ -17,6 +17,10 @@ namespace WPFGame
             this.Size = Size;
 			this.weapon = (Weapon)Item.GetItem(weapon);
 			this.armor = (Armor)Item.GetItem(armor);
+            if(shield != "none")
+            {
+                this.shield = (Shield)Item.GetItem(shield);
+            }
 
 			MaxHealth = Strength * 10;
 			Health = MaxHealth;
@@ -88,7 +92,9 @@ namespace WPFGame
 		{
 			Dictionary<string, string> enemy = Enemys[enemyName];
 
-			return new EnemyCharacter(enemy["name"], Convert.ToInt32(enemy["str"]), Convert.ToInt32(enemy["dex"]), Convert.ToInt32(enemy["int"]), Convert.ToInt32(enemy["size"]), enemy["weapon"], enemy["armor"]);
+			return new EnemyCharacter(enemy["name"],
+                Convert.ToInt32(enemy["str"]), Convert.ToInt32(enemy["dex"]), Convert.ToInt32(enemy["int"]),
+                Convert.ToInt32(enemy["size"]), enemy["weapon"], enemy["armor"], enemy["shield"]);
 		}
 
 		static public string GetRandomEnemyName()

@@ -77,13 +77,13 @@ namespace WPFGame
                 case "Bow":
                     percentage = ((Range["Range"] / 2) + Range["Bows"]) / 100;
                     return percentage;
-                case "Crossbow":
+                case "Crossbows":
                     percentage = ((Range["Range"] / 2) + Range["Crossbows"]) / 100;
                     return percentage;
-                case "Javaline":
+                case "Javalines":
                     percentage = ((Range["Range"] / 2) + Range["Javalines"]) / 100;
                     return percentage;
-                case "Throwing Weapon":
+                case "Throwing Weapons":
                     percentage = ((Range["Range"] / 2) + Range["Throwing Weapons"]) / 100;
                     return percentage;
                 case "spell":

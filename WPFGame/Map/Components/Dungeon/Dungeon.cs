@@ -37,7 +37,7 @@ namespace WPFGame
 				{
 					rooms[i] = new Room(EnemyCharacter.GetEnemy(EnemyCharacter.GetRandomEnemyName()));
 				}
-				rooms[rooms.Count() -1] = new Room(new EnemyCharacter("Boss", 10, 7, 7, 80, "SharpSteelLongSword", "PlateArmor"));
+				rooms[rooms.Count() -1] = new Room(new EnemyCharacter("Boss", 10, 7, 7, 80, "SharpSteelLongSword", "PlateArmor", "none"));
 			}
 			else
 			{

@@ -31,8 +31,23 @@ namespace WPFGame
 				Game.text.AddToOPLog("Ap: " + ((Weapon)Item.GetItem(item)).Ap);
 				Game.text.AddToOPLog("Attack 1: " + ((Weapon)Item.GetItem(item)).Attacks[0].Name);
 				Game.text.AddToOPLog("Attack 2: " + ((Weapon)Item.GetItem(item)).Attacks[1].Name);
-			}
-		}
+                Game.text.AddToOPLog("Stamina: " + ((Weapon)Item.GetItem(item)).Stamina);
+                Game.text.AddToOPLog("Range: " + ((Weapon)Item.GetItem(item)).Range);
+            }
+
+            if(Item.GetItem(item).Category == "armor")
+            {
+                Game.text.AddToOPLog("Def: " + ((Armor)Item.GetItem(item)).Def);
+            }
+
+            if (Item.GetItem(item).Category == "spell")
+            {
+                Game.text.AddToOPLog("Damage: " + ((Spell)Item.GetItem(item)).Dmg);
+                Game.text.AddToOPLog("Ap: " + ((Spell)Item.GetItem(item)).Ap);
+                Game.text.AddToOPLog("Range: " + ((Spell)Item.GetItem(item)).Range);
+                Game.text.AddToOPLog("Mana: " + ((Spell)Item.GetItem(item)).Mana);
+            }
+        }
 
         override public void Button1_Click()
 		{
@@ -46,6 +61,12 @@ namespace WPFGame
 					case "armor":
 						Game.player.armor = (Armor)Item.GetItem(item);
 						break;
+                    case "spell":
+                        Game.player.spell = (Spell)Item.GetItem(item);
+                        break;
+                    case "shield":
+                        Game.player.shield = (Shield)Item.GetItem(item);
+                        break;
 				}
 				Game.State = new InventoryStateCategory(Item.GetItem(item).Category, inventory);
 			}
