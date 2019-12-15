@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class GameState : State
+    public class GameState : State
     {
         public GameState() : base("Map", "Inventory", "Skills", HelpBoxText: "* Map lets you move to  a new location \n* Inventory lets you see and equip your items \n* Skills lets you see and level your skills")
         {

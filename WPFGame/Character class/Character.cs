@@ -2,50 +2,43 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace WPFGame
 {
-    class Character
+    [XmlInclude(typeof(PlayerCharacter))]
+    [XmlInclude(typeof(EnemyCharacter))]
+    public class Character
     {
-        //Test
-        //Test 2
-        public int DamageTaken;
-		public string Name;
-		protected string Tag;
-        
-
-        protected int MaxHealth;
-        protected int Health;
+        public string Tag { get; set; }
+        public int MaxHealth { get; set; }
+        public int Health;
         public int GetHealth()
         {
             return Health;
         }
-        protected int Size;
+        public int Size;
         public int GetSize()
         {
             return Size;
         }
 
-        public int stamina;
-        public int mana;
+        public int DamageTaken { get; set; }
+        public string Name { get; set; }
+        public int Stamina { get; set; }
+        public int Mana { get; set; }
+        public int Strength { get; set; }
+        public int Dexterity { get; set; }
+        public int Intelligence { get; set; }
+        public Weapon Weapon { get; set; }
+        public Armor Armor { get; set; }
+        public Spell Spell { get; set; }
+        public Shield Shield { get; set; }
 
-
-        public int Strength;
-        public int Dexterity;
-        public int Intelligence;
-        
-        public Weapon weapon;
-        public Armor armor;
-        public Spell spell;
-        public Shield shield;
-
-        public CharacterSkills Skills = new CharacterSkills();
+        public CharacterSkills Skills = new CharacterSkills(25);
         public CharacterDamage CharDmg = new CharacterDamage();
 
-        public Character()
-        {
-			
-		}
+        public Character() { }
 
         //gets the dmage from the attacker
         public Damage GetDamage(Attack attack, bool isSpell = false)
@@ -54,11 +47,11 @@ namespace WPFGame
 
             if (isSpell)
             {
-                damage = new Damage((int)(Game.player.spell.Ap), (int)(((spell.Dmg * Skills.GetSkillPercentage(spell.Category)) + GetInfo().Int)));
+                damage = new Damage((int)(Game.player.Spell.Ap), (int)(((Spell.Dmg * Skills.GetSkillPercentage(Spell.Category)) + GetInfo().Int)));
             }
             else
             {
-                damage = new Damage((int)(Game.player.weapon.Ap * attack.Ap), (int)(((weapon.Dmg * Skills.GetSkillPercentage(weapon.Type)) + GetInfo().Str) * attack.Dmg), attack.Effect);
+                damage = new Damage((int)(Game.player.Weapon.Ap * attack.Ap), (int)(((Weapon.Dmg * Skills.GetSkillPercentage(Weapon.Type)) + GetInfo().Str) * attack.Dmg), attack.Effect);
             }
 			
 			return damage;
@@ -68,11 +61,11 @@ namespace WPFGame
         public void TakeDamage(Damage damage)
         {
             CharDmg.AddDamage(damage.effect);
-            int def = armor.Def;
+            int def = Armor.Def;
 
-            if(shield != null)
+            if(Shield != null)
             {
-                def += shield.Def;
+                def += Shield.Def;
             }
             
 
@@ -105,12 +98,12 @@ namespace WPFGame
 
         public UICharacterInfo GetInfo()
         {
-			Weapon weapon = this.weapon ?? (Weapon)Item.GetItem("IronSword");
-			Armor armor = this.armor ?? (Armor)Item.GetItem("ClothArmor");
+			Weapon weapon = this.Weapon ?? (Weapon)Item.GetItem("IronSword");
+			Armor armor = this.Armor ?? (Armor)Item.GetItem("ClothArmor");
             int def = armor.Def;
-            if (shield != null)
+            if (Shield != null)
             {
-                def += shield.Def;
+                def += Shield.Def;
             }
 
             return new UICharacterInfo(Name, weapon.Name, armor.Name, CharDmg.EffectList, Health, MaxHealth, Strength, Dexterity, Intelligence, def, weapon.Dmg);

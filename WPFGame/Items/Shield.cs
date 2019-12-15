@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Shield : Item
+    public class Shield : Item
     {
-        public int Def;
+        public int Def { get; set; }
 
         public Shield(string Name, int Cost, int Def) : base(Name, Cost)
         {
@@ -16,5 +16,6 @@ namespace WPFGame
 
             Category = "shield";
         }
+        public Shield() { }
     }
 }

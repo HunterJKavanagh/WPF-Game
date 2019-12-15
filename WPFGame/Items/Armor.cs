@@ -5,9 +5,9 @@ using System.Text;
 
 namespace WPFGame
 {
-    class Armor : Item
+    public class Armor : Item
     {
-        public int Def;
+        public int Def { get; set; }
 
         public Armor(string Name, int Cost, int Def) : base(Name, Cost)
         {
@@ -15,5 +15,6 @@ namespace WPFGame
 
 			Category = "armor";
         }
+        public Armor() { }
 	}
 }

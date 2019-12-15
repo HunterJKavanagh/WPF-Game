@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class InventoryStateItem : State
+    public class InventoryStateItem : State
     {
 		private string item;
 		private Inventory inventory;
@@ -18,6 +18,7 @@ namespace WPFGame
 
 			PrintItemInfo();
         }
+        public InventoryStateItem() { }
 
 		private void PrintItemInfo()
 		{
@@ -56,16 +57,16 @@ namespace WPFGame
 				switch (Item.GetItem(item).Category)
 				{
 					case "weapon":
-						Game.player.weapon = (Weapon)Item.GetItem(item);
+						Game.player.Weapon = (Weapon)Item.GetItem(item);
 						break;
 					case "armor":
-						Game.player.armor = (Armor)Item.GetItem(item);
+						Game.player.Armor = (Armor)Item.GetItem(item);
 						break;
                     case "spell":
-                        Game.player.spell = (Spell)Item.GetItem(item);
+                        Game.player.Spell = (Spell)Item.GetItem(item);
                         break;
                     case "shield":
-                        Game.player.shield = (Shield)Item.GetItem(item);
+                        Game.player.Shield = (Shield)Item.GetItem(item);
                         break;
 				}
 				Game.State = new InventoryStateCategory(Item.GetItem(item).Category, inventory);

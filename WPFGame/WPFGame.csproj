@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameData.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Inventory.cs" />
     <Compile Include="Items\Item.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Map\Location.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Map\Point.cs" />
+    <Compile Include="SerializableDictionary.cs" />
     <Compile Include="Skills\CharacterSkills.cs" />
     <Compile Include="Game\Text.cs" />
     <Compile Include="Game\UICharacterInfo.cs" />

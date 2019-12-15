@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class MapState : State
+    public class MapState : State
     {
-        public MapState() : base("North", "South", "East", "West", "Go to " + Game.map.GetCurrentLocaton().component.Name)
+        public MapState() : base("North", "South", "East", "West", "Go to " + Game.map.GetCurrentLocaton().Component.Name)
         {
             Game.text.AddToOPLog("Current Location: " + Game.map.GetCurrentLocaton().Name);
-            Game.text.AddToOPLog("Componet: " + Game.map.GetCurrentLocaton().component.Name);
+            Game.text.AddToOPLog("Componet: " + Game.map.GetCurrentLocaton().Component.Name);
             Game.text.AddToOPLog("North: " + Game.map.GetNorth().Name);
             Game.text.AddToOPLog("South: " + Game.map.GetSouth().Name);
             Game.text.AddToOPLog("East: " + Game.map.GetEast().Name);
             Game.text.AddToOPLog("West: " + Game.map.GetWest().Name);
         }
+        //public MapState() { }
 
         override public void Button1_Click()
         {
@@ -40,7 +41,7 @@ namespace WPFGame
         }
         override public void Button5_Click()
         {
-            Game.State = Game.map.GetCurrentLocaton().component.GetState();
+            Game.State = Game.map.GetCurrentLocaton().Component.GetState();
         }
         override public void Button6_Click()
         {

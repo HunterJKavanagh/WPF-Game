@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-	class SkillState : State
+	public class SkillState : State
 	{
         private int page;
 
@@ -32,6 +32,7 @@ namespace WPFGame
             Game.text.AddToOPLog("12. Magic: " + Game.player.Skills.Magic["Magic"]);
             Game.text.AddToOPLog("13. Spells: " + Game.player.Skills.Magic["Spells"]);
         }
+        public SkillState() { }
 
 		private bool HaveXp()
 		{

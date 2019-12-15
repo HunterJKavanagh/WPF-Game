@@ -13,6 +13,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using System.IO;
+
 
 namespace WPFGame
 {
@@ -127,14 +132,14 @@ namespace WPFGame
 		public void UpDateToolTips()
 		{
 			//player Box
-			UI_PlayerWeapon.ToolTip = "Dmg: " + Game.player.weapon.Dmg;
+			UI_PlayerWeapon.ToolTip = "Dmg: " + Game.player.Weapon.Dmg;
 			//Enemy Box
-			UI_EnemyWeapon.ToolTip = "Dmg: " + Game.combat.enemy.weapon.Dmg;
+			UI_EnemyWeapon.ToolTip = "Dmg: " + Game.combat.enemy.Weapon.Dmg;
 			//buttons
 			if (Game.State.GetType() == typeof(CombatState))
 			{
-				Button1.ToolTip = "Dmg:" + (int)(((Game.player.weapon.Dmg * Game.player.Skills.GetSkillPercentage(Game.player.weapon.Type)) + Game.player.GetInfo().Str) * Game.player.weapon.Attacks[0].Dmg) + " AP: " + (int)(Game.player.weapon.Ap * Game.player.weapon.Attacks[0].Ap);
-				Button2.ToolTip = "Dmg:" + (int)(((Game.player.weapon.Dmg * Game.player.Skills.GetSkillPercentage(Game.player.weapon.Type)) + Game.player.GetInfo().Str) * Game.player.weapon.Attacks[1].Dmg) + " AP: " + (int)(Game.player.weapon.Ap * Game.player.weapon.Attacks[1].Ap);
+				Button1.ToolTip = "Dmg:" + (int)(((Game.player.Weapon.Dmg * Game.player.Skills.GetSkillPercentage(Game.player.Weapon.Type)) + Game.player.GetInfo().Str) * Game.player.Weapon.Attacks[0].Dmg) + " AP: " + (int)(Game.player.Weapon.Ap * Game.player.Weapon.Attacks[0].Ap);
+				Button2.ToolTip = "Dmg:" + (int)(((Game.player.Weapon.Dmg * Game.player.Skills.GetSkillPercentage(Game.player.Weapon.Type)) + Game.player.GetInfo().Str) * Game.player.Weapon.Attacks[1].Dmg) + " AP: " + (int)(Game.player.Weapon.Ap * Game.player.Weapon.Attacks[1].Ap);
 			}
 		}
 		public void UpDatePlayerBox()
@@ -150,12 +155,17 @@ namespace WPFGame
 			UI_PlayerStr.Content = "Str: " + Game.UIPlayerInfo.Str;
 			UI_PlayerDex.Content = "Dex: " + Game.UIPlayerInfo.Dex;
 			UI_PlayerInt.Content = "Int: " + Game.UIPlayerInfo.Int;
-			UI_PlayerHpBar.Value = UI_PlayerHpBar.Maximum * ((float)Game.UIPlayerInfo.HP / Game.UIPlayerInfo.MaxHP);
+
+            UICharacterInfo t1 = Game.UIPlayerInfo;
+
+
+
+            UI_PlayerHpBar.Value = UI_PlayerHpBar.Maximum * ((float)Game.UIPlayerInfo.HP / Game.UIPlayerInfo.MaxHP);
 
 			UI_PlayerXP.Content = "Xp: " + Game.player.xp;
 			UI_PlayerGold.Content = "Gold: " + Game.player.Gold;
-            UI_PlayerStamina.Content = "Stamina: " + Game.player.stamina;
-            UI_PlayerMana.Content = "Mana: " + Game.player.mana;
+            UI_PlayerStamina.Content = "Stamina: " + Game.player.Stamina;
+            UI_PlayerMana.Content = "Mana: " + Game.player.Mana;
 
 
             switch (Game.UIPlayerInfo.EffectList.Count)
@@ -180,7 +190,7 @@ namespace WPFGame
 			UI_PlayerSkillDaggers.Content = "Daggers: " + Game.player.Skills.Melee["Daggers"];
 			UI_PlayerSkillSpears.Content = "Spears: " + Game.player.Skills.Melee["Spears"];
 			UI_PlayerSkillSwords.Content = "Swords: " + Game.player.Skills.Melee["Swords"];
-			UI_PlayerSkillUnarmed.Content = "Unarmed: " + Game.player.Skills.Melee["Unarmed"];
+			UI_PlayerSkillUnarmed.Content = "Unarmed: " + Game.player.Skills.Melee["Unarmed"]; // Unamred
 
             UI_PlayerSkillRange.Content = "Range: " + Game.player.Skills.Range["Range"];
             UI_PlayerSkillBows.Content = "Bows: " + Game.player.Skills.Range["Bows"];
@@ -292,12 +302,32 @@ namespace WPFGame
 		}
 		private void UI_SaveButton_Click(object sender, RoutedEventArgs e)
 		{
+            GameData data = new GameData(Game.player, Game.combat, Game.State, Game.map, Game.UIPlayerInfo, Game.UIEnemyInfo);
 
+            XmlSerializer serializer = new XmlSerializer(typeof(GameData));
+
+            using(TextWriter tw = new StreamWriter(@".\save.xml"))
+            {
+                serializer.Serialize(tw, data);
+            }
 		}
 		private void UI_LoadButton_Click(object sender, RoutedEventArgs e)
 		{
+            XmlSerializer deserializer = new XmlSerializer(typeof(GameData));
 
-		}
+            TextReader reader = new StreamReader(@".\save.xml");
+            Object obj = deserializer.Deserialize(reader);
+            GameData data = (GameData)obj;
+            reader.Close();
+
+            Game.player = data.Player;
+            Game.combat = data.Combat;
+            Game.State = data.State;
+            Game.map = data.Map;
+
+            Game.UpdateInfo();
+            UpDateUI();
+        }
 
 		//Character Creater popup
 		//Character Creater popup

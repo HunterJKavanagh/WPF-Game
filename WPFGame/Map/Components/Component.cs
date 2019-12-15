@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Component
+    public class Component
     {
         public string Name;
         
@@ -14,6 +14,7 @@ namespace WPFGame
         {
             this.Name = Name;
         }
+        public Component() { }
 
         virtual public State GetState()
         {

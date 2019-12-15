@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    struct Point
+    public struct Point
     {
         public int X;
         public int Y;

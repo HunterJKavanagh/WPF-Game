@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class CombatState : State
+    public class CombatState : State
     {
-		public CombatState(EnemyCharacter enemy = null) : base(Game.player.weapon.Attacks[0].Name, Game.player.weapon.Attacks[1].Name ?? "", "Move F", " Move  B", Game.player.spell.Name)
+		public CombatState(EnemyCharacter enemy = null) : base(Game.player.Weapon.Attacks[0].Name, Game.player.Weapon.Attacks[1].Name ?? "", "Move F", " Move  B", Game.player.Spell.Name)
         {
             Game.combat = new Combat(enemy) ?? new Combat(EnemyCharacter.GetRandomEnemy());
             EnemyBoxVis = true;
         }
+        public CombatState() { }
 		
         override public void Button1_Click()
         {
@@ -22,7 +23,7 @@ namespace WPFGame
             }
             else
             {
-                Game.combat.Update(Game.player.weapon.Attacks[0]);
+                Game.combat.Update(Game.player.Weapon.Attacks[0]);
             }
         }
         override public void Button2_Click()
@@ -33,7 +34,7 @@ namespace WPFGame
             }
             else
             {
-                Game.combat.Update(Game.player.weapon.Attacks[1]);
+                Game.combat.Update(Game.player.Weapon.Attacks[1]);
             }            
         }
         override public void Button3_Click()

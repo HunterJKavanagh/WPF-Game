@@ -5,18 +5,14 @@ using System.Text;
 
 namespace WPFGame
 {
-    class PlayerCharacter : Character
+    public class PlayerCharacter : Character
     {
         public Inventory inventory = new Inventory(true);
-
-        //Player XP
 		static public int StartXp = 75;
         public int attribute_points = 5;
         public int xp;
-        //player gold
         public int Gold = 2500;
 
-        //player constructor 
         public PlayerCharacter(int strength, int dexterity, int intelligence)
         {
             this.Strength = strength;
@@ -24,16 +20,16 @@ namespace WPFGame
             this.Intelligence = intelligence;
             this.Size = 50;
 
-            this.stamina = strength * 2;
-            this.mana = intelligence;
+            this.Stamina = strength * 2;
+            this.Mana = intelligence;
 
             MaxHealth = (strength * 100);
             Health = MaxHealth;
 
-			weapon = (Weapon)Item.GetItem("DullIronShortSword");
-            armor = (Armor)Item.GetItem("ClothArmor");
-            spell = (Spell)Item.GetItem("FireBolt");
-            shield =(Shield)Item.GetItem("WoodShield");
+			Weapon = (Weapon)Item.GetItem("DullIronShortSword");
+            Armor = (Armor)Item.GetItem("ClothArmor");
+            Spell = (Spell)Item.GetItem("FireBolt");
+            Shield =(Shield)Item.GetItem("WoodShield");
 
             inventory.AddItem("DullIronShortSword");
             inventory.AddItem("ClothArmor");
@@ -45,6 +41,7 @@ namespace WPFGame
 
 			xp = StartXp;
 		}
+        public PlayerCharacter() { }
 
         //Player level up screen
         public void LevelUp(string command)

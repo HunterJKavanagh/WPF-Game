@@ -5,26 +5,15 @@ using System.Text;
 
 namespace WPFGame
 {
-    class Combat
+    public class Combat
     {
         public EnemyCharacter enemy;
-        public bool playerHit;
-        public bool GetPlayerHit() => playerHit;
-        public bool playerMoved;
-        public bool playerOutOfRange;
+
         public int playerCombatData = 0;
-
-        public bool enemyHit;
-        public bool GetEnemyHit() => enemyHit;
-        public bool enemyMoved;
-        public bool enemyOutOfRange;
         public int enemyCombatData = 0;
-
         public bool CombatOver;
         public bool PlayerWon;
-
         public int dis = 0;
-
         public int round = 0;
 
         public Combat(EnemyCharacter enemy)
@@ -36,6 +25,7 @@ namespace WPFGame
 
             dis = 5;
         }
+        public Combat() { }
 
         public void Update(Attack attack, bool isSpell = false)
         {
@@ -43,18 +33,18 @@ namespace WPFGame
 
             if(round % 2 == 0)
             {
-                Game.player.stamina += 1;
+                Game.player.Stamina += 1;
             }
 
             if (isSpell)
             {
-                if (Game.player.spell.Range >= Game.combat.dis)
+                if (Game.player.Spell.Range >= Game.combat.dis)
                 {
-                    if(Game.player.mana - Game.player.spell.Mana >= 0)
+                    if(Game.player.Mana - Game.player.Spell.Mana >= 0)
                     {
                         enemy.TakeDamage(Game.player.GetDamage(null, true));
                         playerCombatData = 1;
-                        Game.player.mana -= Game.player.spell.Mana;
+                        Game.player.Mana -= Game.player.Spell.Mana;
                     }
                     else
                     {
@@ -70,15 +60,15 @@ namespace WPFGame
             {
                 if (attack != null)
                 {
-                    if (Game.player.weapon.Range >= Game.combat.dis)
+                    if (Game.player.Weapon.Range >= Game.combat.dis)
                     {
-                        if (Game.player.stamina - Game.player.weapon.Stamina  >= 0)
+                        if (Game.player.Stamina - Game.player.Weapon.Stamina  >= 0)
                         {
                             if (Game.player.HitTest(enemy.GetSize()))
                             {
                                 enemy.TakeDamage(Game.player.GetDamage(attack));
                                 playerCombatData = 1;
-                                Game.player.stamina -= Game.player.weapon.Stamina;
+                                Game.player.Stamina -= Game.player.Weapon.Stamina;
                             }
                             else
                             {
@@ -101,11 +91,11 @@ namespace WPFGame
                 }
             }
 
-            if (enemy.weapon.Range >= Game.combat.dis)
+            if (enemy.Weapon.Range >= Game.combat.dis)
             {
                 if (enemy.HitTest(Game.player.GetSize()))
                 {
-                    Game.player.TakeDamage(enemy.GetDamage(enemy.weapon.Attacks[0]));
+                    Game.player.TakeDamage(enemy.GetDamage(enemy.Weapon.Attacks[0]));
                     enemyCombatData = 1;
                 }
                 else
@@ -128,8 +118,8 @@ namespace WPFGame
                 {
                     Game.player.xp += 15;
                     Game.player.Gold += 50;
-                    Game.player.stamina = Game.player.Strength * 2;
-                    Game.player.mana = Game.player.Intelligence;
+                    Game.player.Stamina = Game.player.Strength * 2;
+                    Game.player.Mana = Game.player.Intelligence;
 
                     CombatOver = true;
                     Game.State.ButtonNames[0] = "Back";

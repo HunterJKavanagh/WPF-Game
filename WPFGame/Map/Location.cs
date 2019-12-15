@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Location
+    public class Location
     {
-        private Point position;
-
-		public Component component;
-
-        public string Name;
+        public Point Position { get; set; }
+		public Component Component { get; set; }
+        public string Name { get; set; }
 
         public Location(string Name, int X, int Y)
         {
             this.Name = Name;
-            position = new Point(X, Y);        
+            Position = new Point(X, Y);        
 		}
+        public Location() { }
     }
+
+
 }

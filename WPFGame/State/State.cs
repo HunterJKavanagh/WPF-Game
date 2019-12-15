@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace WPFGame
 {
-	class State
+    [XmlInclude(typeof(GameState))]
+    [XmlInclude(typeof(SkillState))]
+    [XmlInclude(typeof(MapState))]
+    [XmlInclude(typeof(InventoryState))]
+    [XmlInclude(typeof(InventoryStateCategory))]
+    [XmlInclude(typeof(InventoryStateItem))]
+    [XmlInclude(typeof(GameOverState))]
+    [XmlInclude(typeof(ShopState))]
+    [XmlInclude(typeof(DungeonState))]
+    [XmlInclude(typeof(CombatState))]
+    public class State
 	{
         public bool EnemyBoxVis = false;
-
 		public string HelpBoxText;
-
 		public string[] ButtonNames = new string[10];
-		public State(string Name1 = "", string Name2 = "", string Name3 = "", string Name4 = "", string Name5 = "", string Name6 = "", string Name7 = "", string Name8 = "", string Name9 = "", string Name10 = "", string HelpBoxText = "")
+        
+        public State(string Name1 = "", string Name2 = "", string Name3 = "", string Name4 = "", string Name5 = "", string Name6 = "", string Name7 = "", string Name8 = "", string Name9 = "", string Name10 = "", string HelpBoxText = "")
 		{
 			this.HelpBoxText = HelpBoxText;
 
@@ -28,6 +38,7 @@ namespace WPFGame
 			ButtonNames[8] = Name9;
 			ButtonNames[9] = Name10;
 		}
+        public State() { }
 
 		virtual public void Button1_Click()
 		{

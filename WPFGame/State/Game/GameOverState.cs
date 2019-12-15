@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class GameOverState : State
+    public class GameOverState : State
     {
         public GameOverState() : base("Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!", "Game Over!")
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Inventory
+    public class Inventory
     {
         private List<List<string>> inventoryList = new List<List<string>>();       
 
@@ -21,6 +21,7 @@ namespace WPFGame
 				inventoryList.Add(new List<string>());
 			}
 		}
+        public Inventory() { }
 
         public void AddItem(string item)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class InventoryStateCategory : State
+    public class InventoryStateCategory : State
     {
 		private string category;
 
@@ -23,6 +23,7 @@ namespace WPFGame
 
 			PrintItems();
         }
+        public InventoryStateCategory() { }
 
 		private void PrintItems()
 		{

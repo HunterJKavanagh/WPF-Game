@@ -38,11 +38,6 @@ namespace WPFGame
         static public UICharacterInfo UIPlayerInfo = new UICharacterInfo(player.GetInfo());
         static public UICharacterInfo UIEnemyInfo = new UICharacterInfo(combat.enemy.GetInfo());
 
-        public void Start()
-        {
-
-        }
-
         static public Random GetRandom()
         {
             return random;
@@ -53,5 +48,7 @@ namespace WPFGame
             Game.UIPlayerInfo.SetCharacterInfo(player.GetInfo());
             Game.UIEnemyInfo.SetCharacterInfo(combat.enemy.GetInfo());
         }
+
+        
     }
 }

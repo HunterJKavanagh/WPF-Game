@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WPFGame
 {
-    class EnemyCharacter : Character
+    public class EnemyCharacter : Character
     {
         //Enemy constructor
         public EnemyCharacter(string Name, int Strength, int Dexterity, int Intelligence, int Size, string weapon, string armor, string shield)
@@ -15,11 +15,11 @@ namespace WPFGame
             this.Intelligence = Intelligence;
             this.Name = Name;
             this.Size = Size;
-			this.weapon = (Weapon)Item.GetItem(weapon);
-			this.armor = (Armor)Item.GetItem(armor);
+			this.Weapon = (Weapon)Item.GetItem(weapon);
+			this.Armor = (Armor)Item.GetItem(armor);
             if(shield != "none")
             {
-                this.shield = (Shield)Item.GetItem(shield);
+                this.Shield = (Shield)Item.GetItem(shield);
             }
 
 			MaxHealth = Strength * 10;
@@ -27,7 +27,6 @@ namespace WPFGame
 
             Tag = "Enemy";
         }
-        
         static public EnemyCharacter GetRandomEnemy()
         {
 			//list of all EnemyCharacters
@@ -40,6 +39,7 @@ namespace WPFGame
 
             return enemyList[Game.GetRandom().Next(enemyList.Count)];
         }
+        public EnemyCharacter() { }
 
 		
 

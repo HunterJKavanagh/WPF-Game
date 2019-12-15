@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Text
+    public class Text
     {
         static public Brush DefaultColor = Brushes.Black;
         static public Brush PlayerColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#00FF00"));
@@ -33,5 +33,6 @@ namespace WPFGame
             OPLog.Add(run);
             OPLogUpdate = true;
         }
+        public Text() { }
     }
 }

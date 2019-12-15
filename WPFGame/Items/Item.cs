@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Item
+    public class Item
     {
-        public string Category;
-        public string Name;
-        public int Cost;
-		public string rarity;
-		public string level;
+        public string Category { get; set; }
+        public string Name { get; set; }
+        public int Cost { get; set; }
+        public string rarity { get; set; }
+        public string level { get; set; }
 
         public Item(string Name, int Cost)
         {
             this.Name = Name;
             this.Cost = Cost;
         }
+        public Item() { }
 
         static private string path = @"GameFiles\Items\";
 

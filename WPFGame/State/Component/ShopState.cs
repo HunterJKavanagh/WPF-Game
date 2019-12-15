@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class ShopState : State
+    public class ShopState : State
     {
         public ShopState() : base("Continue to Shop")
 
@@ -16,7 +16,7 @@ namespace WPFGame
 
         override public void Button1_Click()
         {
-			Game.State = new InventoryState(((Shop)Game.map.GetCurrentLocaton().component).inventory);
+			Game.State = new InventoryState(((Shop)Game.map.GetCurrentLocaton().Component).inventory);
 		}
         override public void Button2_Click()
         {

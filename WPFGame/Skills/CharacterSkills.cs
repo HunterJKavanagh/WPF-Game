@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class CharacterSkills
+    public class CharacterSkills
     {
-        public Dictionary<string, int> Melee = new Dictionary<string, int>()
+        public SerializableDictionary<string, int> Melee = new SerializableDictionary<string, int>()
         {
             {"Melee",  0 },
             {"Axes", 0 },
             {"Daggers", 0 },
             {"Spears", 0 },
             {"Swords", 0 },
-            {"Unamred", 0 }
+            {"Unarmed", 0 }
         };
 
-        public Dictionary<string, int> Range = new Dictionary<string, int>()
+        public SerializableDictionary<string, int> Range = new SerializableDictionary<string, int>()
         {
             {"Range",  0 },
             {"Bows", 0 },
@@ -27,7 +27,7 @@ namespace WPFGame
             {"Throwing Weapons", 0 }
         };
 
-        public Dictionary<string, int> Magic = new Dictionary<string, int>()
+        public SerializableDictionary<string, int> Magic = new SerializableDictionary<string, int>()
         {
             {"Magic",  0 },
             {"Spells",  0}
@@ -52,6 +52,7 @@ namespace WPFGame
             this.Magic["Magic"] = Magic;
             this.Magic["Spells"] = Magic;
         }
+        public CharacterSkills() { }
 
         public float GetSkillPercentage(string skillType)
         {

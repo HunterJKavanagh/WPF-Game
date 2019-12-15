@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class DungeonState : State
+    public class DungeonState : State
     {
-        public DungeonState() : base(((Dungeon)Game.map.GetCurrentLocaton().component).GetCurrentRoom().Completed ? "Continue" : "Fight", HelpBoxText: "* You must go though all the rooms in the dungon befor you can leave")
+        public DungeonState() : base(((Dungeon)Game.map.GetCurrentLocaton().Component).GetCurrentRoom().Completed ? "Continue" : "Fight", HelpBoxText: "* You must go though all the rooms in the dungon befor you can leave")
         {
             Game.text.AddToOPLog("Dungeon");
-            Game.text.AddToOPLog("Room: " + (((Dungeon)Game.map.GetCurrentLocaton().component).currentRoom + 1) + " / " + ((Dungeon)Game.map.GetCurrentLocaton().component).GetSize());
+            Game.text.AddToOPLog("Room: " + (((Dungeon)Game.map.GetCurrentLocaton().Component).currentRoom + 1) + " / " + ((Dungeon)Game.map.GetCurrentLocaton().Component).GetSize());
         }
+        //public DungeonState() { }
 
         override public void Button1_Click()
         {
-            if(((Dungeon)Game.map.GetCurrentLocaton().component).GetCurrentRoom().Completed)
+            if(((Dungeon)Game.map.GetCurrentLocaton().Component).GetCurrentRoom().Completed)
             {
-                if(((Dungeon)Game.map.GetCurrentLocaton().component).currentRoom < ((Dungeon)Game.map.GetCurrentLocaton().component).GetSize() - 1)
+                if(((Dungeon)Game.map.GetCurrentLocaton().Component).currentRoom < ((Dungeon)Game.map.GetCurrentLocaton().Component).GetSize() - 1)
                 {
-                    ((Dungeon)Game.map.GetCurrentLocaton().component).currentRoom += 1;
+                    ((Dungeon)Game.map.GetCurrentLocaton().Component).currentRoom += 1;
                     Game.State = new DungeonState();
                 }
                 else
@@ -30,8 +31,8 @@ namespace WPFGame
             }
             else
             {
-                ((Dungeon)Game.map.GetCurrentLocaton().component).GetCurrentRoom().Completed = true;
-                Game.State = new CombatState(((Dungeon)Game.map.GetCurrentLocaton().component).GetCurrentRoom().Enemy);
+                ((Dungeon)Game.map.GetCurrentLocaton().Component).GetCurrentRoom().Completed = true;
+                Game.State = new CombatState(((Dungeon)Game.map.GetCurrentLocaton().Component).GetCurrentRoom().Enemy);
             }
         }
         override public void Button2_Click()

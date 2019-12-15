@@ -6,23 +6,20 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class UICharacterInfo
+    public class UICharacterInfo
     {
-        //public int DamgeTaken;
+        public string Name { get; set; }
+        public string WeaponName { get; set; }
+        public string ArmorName { get; set; }
+        public int HP { get; set; }
+        public int MaxHP { get; set; }
+        public int Str { get; set; }
+        public int Dex { get; set; }
+        public int Int { get; set; }
+        public int ArmorDef { get; set; }
+        public int WeaponDmg { get; set; }
 
-        public string Name;
-        public string WeaponName;
-        public string ArmorName;
-
-        public List<DamageEffect> EffectList;
-
-        public int HP;
-        public int MaxHP;
-        public int Str;
-        public int Dex;
-        public int Int;
-        public int ArmorDef;
-        public int WeaponDmg;
+        public List<DamageEffect> EffectList { get; set; }
 
         public UICharacterInfo(string name, string weaponName, string armorName, List<DamageEffect> EffectList,
             int hp, int maxHP, int str, int dex, int Int, int armorDef, int weaponDmg)
@@ -53,6 +50,7 @@ namespace WPFGame
             ArmorDef = uICharacterInfo.ArmorDef;
             WeaponDmg = uICharacterInfo.WeaponDmg;
         }
+        public UICharacterInfo() { }
 
         public void SetCharacterInfo(UICharacterInfo uICharacterInfo)
         {

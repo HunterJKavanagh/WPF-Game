@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Spell : Item
+    public class Spell : Item
     {
-        public int Ap;
-        public int Dmg;
-        public int Range;
-        public int Mana;
+        public int Ap { get; set; }
+        public int Dmg { get; set; }
+        public int Range { get; set; }
+        public int Mana { get; set; }
 
         public Spell(string Name, int Cost, int Ap, int Dmg, int Range, int Mana) : base(Name, Cost)
         {
@@ -22,5 +22,6 @@ namespace WPFGame
             this.Range = Range;
             this.Mana = Mana;
         }
+        public Spell() { }
     }
 }

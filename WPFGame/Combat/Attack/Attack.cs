@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Attack
+    public class Attack
     {
-        public string Name;
-
-        public double Ap;
-        public double Dmg;
-
-        public DamageEffect Effect;
+        public string Name { get; set; } 
+        public double Ap { get; set; }
+        public double Dmg { get; set; }
+        public DamageEffect Effect { get; set; }
 
         public Attack(string Name = "null",  double Ap = 0, double Dmg = 0, DamageEffect Effect = null)
         {
@@ -24,6 +22,7 @@ namespace WPFGame
 
             this.Effect = Effect;
         }
+        public Attack() { }
 
 
 		static private string path = @"GameFiles\Attacks\";

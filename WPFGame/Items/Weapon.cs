@@ -5,14 +5,13 @@ using System.Text;
 
 namespace WPFGame
 {
-    class Weapon : Item
+    public class Weapon : Item
     {
-        public string Type;
-
-        public int Ap;
-        public int Dmg;
-        public int Range;
-        public int Stamina;
+        public string Type { get; set; }
+        public int Ap { get; set; }
+        public int Dmg { get; set; }
+        public int Range { get; set; }
+        public int Stamina { get; set; }
 
         public List<Attack> Attacks = new List<Attack>();
 
@@ -28,6 +27,7 @@ namespace WPFGame
 
 			Attacks.Add(Attack.GetAttack(attack1));
 			Attacks.Add(Attack.GetAttack(attack2));
-		}		
+		}
+        public Weapon() { }
 	}
 }

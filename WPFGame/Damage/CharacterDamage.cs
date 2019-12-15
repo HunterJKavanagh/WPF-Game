@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WPFGame
 {
     //handle all the damage and damage effects done to a character
-    class CharacterDamage
+    public class CharacterDamage
     {
         public List<DamageEffect> EffectList = new List<DamageEffect>();
 

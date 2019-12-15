@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class InventoryState : State
+    public class InventoryState : State
     {
         private Inventory inventory;
 
@@ -25,6 +25,8 @@ namespace WPFGame
 			this.inventory = inventory;
 			PrintCategory();
         }
+        public InventoryState() { }
+
 
 		private void PrintCategory()
 		{

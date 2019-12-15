@@ -1,38 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WPFGame
+﻿namespace WPFGame
 {
-    class Map
+    public class Map
     {
-        private Location[,] locations;
+        private Location[] locations;
 
-        private Point CurrentLocation = new Point(0, 0);
+        public Location[,] GetLocations()
+        {
+            Location[,] l = new Location[SizeX + 1, SizeY + 1];
+            for (int x = 0; x <= SizeX; x++)
+            {
+                for (int y = 0; y <= SizeX; y++)
+                {
+                    l[x, y] = locations[(y * (SizeX + 1)) + x];
+                }
+            }
 
-        int SizeX;
-        int SizeY;
+            if(l == null)
+            {
+                throw new System.Exception("l == null");
+            }
+
+            return l;
+        }
+
+        public void SetLocationsSize(Location[] value)
+        {
+            locations = value;
+        }
+
+        public void SetLocations(Location value, int x, int y)
+        {
+            locations[(y * (SizeX + 1)) + x] = value;
+        }
+
+        public int SizeX { get; set; }
+        public int SizeY { get; set; }
+
+        public Point CurrentLocation = new Point(0, 0);
 
         public Map(int SizeX, int SizeY)
         {
             this.SizeX = SizeX;
             this.SizeY = SizeY;
-            locations = new Location[SizeX + 1, SizeY + 1];
+            SetLocationsSize(new Location[(SizeX + 1) * (SizeY + 1)]);
 
             GenMap();
         }
+        public Map() { }
 
         public Location GetCurrentLocaton()
         {
-            return locations[CurrentLocation.X, CurrentLocation.Y];
+            return GetLocations()[CurrentLocation.X, CurrentLocation.Y];
         }
         public Location GetNorth()
         {
             if (CurrentLocation.Y + 1 <= SizeY)
             {
-                return locations[CurrentLocation.X, CurrentLocation.Y + 1];
+                Location[,] locs = GetLocations();
+                Location loc = locs[CurrentLocation.X, CurrentLocation.Y + 1];
+                return loc;
             }            
             return new Location("Off Map", -1, -1);
         }
@@ -40,7 +66,7 @@ namespace WPFGame
         {
             if (CurrentLocation.Y - 1 >= 0)
             {
-                return locations[CurrentLocation.X, CurrentLocation.Y - 1];
+                return GetLocations()[CurrentLocation.X, CurrentLocation.Y - 1];
             }            
             return new Location("Off Map", -1, -1);
         }
@@ -48,7 +74,7 @@ namespace WPFGame
         {
             if (CurrentLocation.X + 1 <= SizeX)
             {
-                return locations[CurrentLocation.X + 1, CurrentLocation.Y];
+                return GetLocations()[CurrentLocation.X + 1, CurrentLocation.Y];
             }
             return new Location("Off Map", -1, -1);
         }
@@ -56,7 +82,7 @@ namespace WPFGame
         {
             if (CurrentLocation.X - 1 >= 0)
             {
-                return locations[CurrentLocation.X - 1, CurrentLocation.Y];
+                return GetLocations()[CurrentLocation.X - 1, CurrentLocation.Y];
             }
             return new Location("Off Map", -1, -1);
         }
@@ -68,7 +94,6 @@ namespace WPFGame
                 CurrentLocation = new Point(CurrentLocation.X, CurrentLocation.Y + 1);
             }
         }
-
         public void GoSouth()
         {
             if(CurrentLocation.Y - 1 >= 0)
@@ -76,7 +101,6 @@ namespace WPFGame
                 CurrentLocation = new Point(CurrentLocation.X, CurrentLocation.Y - 1);
             }
         }
-
         public void GoEast()
         {
             if (CurrentLocation.X + 1 <= SizeX)
@@ -84,7 +108,6 @@ namespace WPFGame
                 CurrentLocation = new Point(CurrentLocation.X + 1, CurrentLocation.Y);
             }
         }
-
         public void GoWest()
         {
             if(CurrentLocation.X - 1 >= 0)
@@ -99,20 +122,24 @@ namespace WPFGame
             {
                 for(int IY = 0; IY <= SizeY; IY++)
                 {
-                    locations[IX, IY] = new Location("Location " + IX + ":" + IY, IX, IY);
+                    Location loc = GetLocations()[IX, IY];
+
+                    loc = new Location("Location " + IX + ":" + IY, IX, IY);
 
                     if (Game.GetRandom().Next(3) == 0)
                     {
-                        
-                        locations[IX, IY].component = Component.GetComponent("Shop");
+
+                        loc.Component = Component.GetComponent("Shop");
                     }
                     else
                     {
-                        locations[IX, IY].component = new Dungeon();
+                        loc.Component = new Dungeon();
                     }
+
+                    SetLocations(loc, IX, IY);
                 }
             }
-			locations[Game.GetRandom().Next(SizeX), Game.GetRandom().Next(SizeY)].component = new Dungeon("Boss Dungeon", true, 6);
+            GetLocations()[Game.GetRandom().Next(SizeX), Game.GetRandom().Next(SizeY)].Component = new Dungeon("Boss Dungeon", true, 6);
         }
     }
 }

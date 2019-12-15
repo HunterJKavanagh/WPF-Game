@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class Damage
+    public class Damage
     {
-        public int Ap;
-        public int Dmg;
-        public DamageEffect effect;
+        public int Ap { get; set; }
+        public int Dmg { get; set; }
+        public DamageEffect effect { get; set; }
 
         public Damage(int Ap, int Dmg, DamageEffect effect = null)
         {

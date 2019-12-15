@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace WPFGame
 {
-    class DamageEffect
+    public class DamageEffect
     {
-        public string Name;
-        public int EffectLength;
-        public int EffectDmg;
-        public int Chance;
+        public string Name { get; set; }
+        public int EffectLength { get; set; }
+        public int EffectDmg { get; set; }
+        public int Chance { get; set; }
 
         public DamageEffect(string Name, int EffectLength, int EffectDmg, int Chance = 100)
         {
@@ -20,5 +20,6 @@ namespace WPFGame
             this.EffectDmg = EffectDmg;
             this.Chance = Chance;
         }
+        public DamageEffect() { }
     }
 }
